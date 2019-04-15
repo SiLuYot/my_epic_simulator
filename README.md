@@ -1,7 +1,7 @@
 # my_epic_simulator
 
-IDE : vscode
+vscode, nodejs, electron
 
-nodejs, electron
+npm install electron --save-dev
 
-## https://github.com/electron/electron-quick-start
+https://github.com/electron/electron-quick-start
