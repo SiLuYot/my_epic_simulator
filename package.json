@@ -1,0 +1,24 @@
+{
+  "name": "my_epic_simulator",
+  "version": "1.0.0",
+  "description": "my epic simulator",
+  "main": "./Scripts/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "standard"
+  },
+  "repository": "https://github.com/SiLuYot/my_epic_simulator",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "siluyot",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^4.1.4",
+    "standard": "^12.0.1"
+  }
+}
