@@ -4,6 +4,7 @@
 
 ### 시작  
 "` npm install electron --save-dev `"
+
 "` npm start `"
 
 # Skill Data  
