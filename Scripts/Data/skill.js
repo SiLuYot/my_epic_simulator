@@ -1,5 +1,5 @@
 class BaseSkill {
-    constructor(attackRate, pow, soulBunAttackRate = 0) {
+    constructor(attackRate, pow, soulBunAttackRate) {
         this.attackRate = attackRate
         this.pow = pow
         this.soulBunAttackRate = soulBunAttackRate

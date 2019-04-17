@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Data Generator</title>
+
+    <style>
+        body {
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Data Generator</h1>
+    <p>영웅 이름 <input type="text" id="name"></p>
+
+    <p> 속성
+        <select id="element">
+            <option value="0">불</option>
+            <option value="1">얼음</option>
+            <option value="2">자연</option>
+            <option value="3">빛</option>
+            <option value="4">어둠</option>
+        </select>
+    </p>
+
+    <strong>스킬1</strong><br>
+    <input type="number" id="att_rate_1" placeholder="attack rate"><br>
+    <input type="number" id="pow_1" placeholder="pow"><br>
+    <input type="number" id="soul_burn_1" placeholder="soul burn"><br>
+
+    <strong>스킬2</strong><br>
+    <input type="number" id="att_rate_2" placeholder="attack rate"><br>
+    <input type="number" id="pow_2" placeholder="pow"><br>
+    <input type="number" id="soul_burn_2" placeholder="soul burn"><br>
+
+    <strong>스킬3</strong><br>
+    <input type="number" id="att_rate_3" placeholder="attack rate"><br>
+    <input type="number" id="pow_3" placeholder="pow"><br>
+    <input type="number" id="soul_burn_3" placeholder="soul burn"><br>
+
+    <input type="button" id="create" value="생성"><br>
+
+    <textarea id="result" cols="30" rows="10"></textarea><br>
+
+    <script>
+        require('./dataGenerator.js')              
+    </script>
+</body>
+
+
+</html>
