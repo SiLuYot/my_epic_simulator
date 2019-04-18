@@ -4,14 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Epic7 Simulator</title>
-
-  <!-- <style>
-    body {
-      background-image: url('../Image/main_wall.jpg') no-repeat;      
-      background-color: rgba(255, 255, 255, 0.2); 
-    }
-  </style> -->
-
 </head>
 
 <body>
@@ -21,29 +13,24 @@
 
   <h3>목표</h3>
   <ol>
-    <li><STRIKE>적의 방어력을 고려한 데미지 시뮬레이팅</STRIKE></li>
-    <li>스킬강화를 통한 데미지 증가 적용</li>
+    <li>적의 방어력을 고려한 데미지 시뮬레이팅</li>
+    <li>스킬 강화 데미지 적용</li>
+    <li>버프/디버프 적용</li>
   </ol>
 
   <h3>기능</h3>
   <ul>
-    <li><a href="./damageSimulator.html">데미지 시뮬레이터</a></li>
+    <li><a href="./Simulator/damageSimulator.html">데미지 시뮬레이터</a></li>
     <li><a href="./Generator/dataGenerator.html">데이터 생성기</a></li>
   </ul>
 
   <h3>참조</h3>
   <ul>
     <li><a target="blank" href="https://electronjs.org/docs/api">Electron API 링크</a></li>
-    <li><a target="blank"
-        href="https://docs.google.com/spreadsheets/d/1aqL0Uj26PRW_jAUj8pYaSls_DOuFq30fvwQh8ol74-E/edit#gid=0">스킬데이터
-        링크</a></li>
+    <li><a target="blank" href="https://docs.google.com/spreadsheets/d/1aqL0Uj26PRW_jAUj8pYaSls_DOuFq30fvwQh8ol74-E/edit#gid=0">스킬데이터링크</a></li>
   </ul>
 
-  <!-- <img src="../Image/main_wall.jpg"> -->
-  <!-- <input type="button" id="btn1" value="계산"> -->
-
   <script>
-    // You can also require other files to run in this process
     require('./renderer.js')              
   </script>
 </body>

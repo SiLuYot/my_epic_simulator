@@ -14,36 +14,50 @@
 
 <body>
     <h1>Data Generator</h1>
-    <p>영웅 이름 <input type="text" id="name"></p>
 
-    <p> 속성
-        <select id="element">
-            <option value="0">불</option>
-            <option value="1">얼음</option>
-            <option value="2">자연</option>
-            <option value="3">빛</option>
-            <option value="4">어둠</option>
-        </select>
-    </p>
+    <table border="1">
+        <tr>
+            <td align="left" valign="top">
+                <p>이름<br>
+                    <input type="text" id="name">
+                </p>
 
-    <strong>스킬1</strong><br>
-    <input type="number" id="att_rate_1" placeholder="attack rate"><br>
-    <input type="number" id="pow_1" placeholder="pow"><br>
-    <input type="number" id="soul_burn_1" placeholder="soul burn"><br>
+                <p> 속성
+                    <select id="element" style="height: 25px;">
+                        <option value="0">불</option>
+                        <option value="1">얼음</option>
+                        <option value="2">자연</option>
+                        <option value="3">빛</option>
+                        <option value="4">어둠</option>
+                    </select>
+                </p>
 
-    <strong>스킬2</strong><br>
-    <input type="number" id="att_rate_2" placeholder="attack rate"><br>
-    <input type="number" id="pow_2" placeholder="pow"><br>
-    <input type="number" id="soul_burn_2" placeholder="soul burn"><br>
+                <strong>스킬1</strong><br>
+                <input type="number" id="att_rate_1" placeholder="attack rate"><br>
+                <input type="number" id="pow_1" placeholder="pow"><br>
+                <input type="number" id="soul_burn_1" placeholder="soul burn"><br>
 
-    <strong>스킬3</strong><br>
-    <input type="number" id="att_rate_3" placeholder="attack rate"><br>
-    <input type="number" id="pow_3" placeholder="pow"><br>
-    <input type="number" id="soul_burn_3" placeholder="soul burn"><br>
+                <strong>스킬2</strong><br>
+                <input type="number" id="att_rate_2" placeholder="attack rate"><br>
+                <input type="number" id="pow_2" placeholder="pow"><br>
+                <input type="number" id="soul_burn_2" placeholder="soul burn"><br>
 
-    <input type="button" id="create" value="생성"><br>
-
-    <textarea id="result" cols="30" rows="10"></textarea><br>
+                <strong>스킬3</strong><br>
+                <input type="number" id="att_rate_3" placeholder="attack rate"><br>
+                <input type="number" id="pow_3" placeholder="pow"><br>
+                <input type="number" id="soul_burn_3" placeholder="soul burn"><br>
+            </td>
+            <td>
+                <strong>생성된 Json</strong><br>
+                <textarea id="result" cols="70" rows="30"></textarea><br>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="button" id="create" value="생성" style="width:100%"><br>
+            </td>
+        </tr>
+    </table>    
 
     <script>
         require('./dataGenerator.js')              

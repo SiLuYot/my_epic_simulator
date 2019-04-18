@@ -8,8 +8,8 @@ let mainWindow
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 960,
+    height: 720,
     webPreferences: {
       nodeIntegration: true
     }
@@ -20,6 +20,8 @@ function createWindow () {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
+  
+  mainWindow.setMenu(null)
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

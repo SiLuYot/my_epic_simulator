@@ -1,5 +1,4 @@
 # my_epic_simulator
->vscode, electron, nodejs  
 >https://github.com/electron/electron-quick-start
 
 ### 시작  

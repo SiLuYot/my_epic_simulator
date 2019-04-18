@@ -15,10 +15,6 @@ class HeroData{
 
         this.skillSet = new Skill.SkillSet(skill1, skill2, skill3)
     }
-
-    toJson(){
-        return JSON.stringify(this)
-    }
 }
 
 class BaseHero {
