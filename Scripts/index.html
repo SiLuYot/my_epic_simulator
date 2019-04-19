@@ -4,35 +4,75 @@
 <head>
   <meta charset="UTF-8">
   <title>Epic7 Simulator</title>
+
+  <link rel="stylesheet" href="../echoes/css/bootstrap.css">
+  <link rel="stylesheet" href="../echoes/css/style.css">  
 </head>
 
 <body>
-  <h1>Epic7 Simulator</h1>
 
-  <img src="../Image/main_wall.jpg" width="400" height="200">
+  <nav class="navbar navbar-default color-fill navbar-fixed-top">
+    <div class="col-md-12">
+      <div class="nav">
+        <button class="btn-nav">
+          <span class="icon-bar inverted top"></span>
+          <span class="icon-bar inverted middle"></span>
+          <span class="icon-bar inverted bottom"></span>
+        </button>
+      </div>
+      <a class="navbar-brand" href="./index.html">
+        <img class="logo" src="../echoes/img/logo.png" alt="logo">
+      </a>
+      <div class="nav-content hideNav hidden">
+        <ul class="nav-list vcenter">
+          <li class="nav-item"><a class="item-anchor" href="./index.html">Home</a></li>
+          <li class="nav-item"><a class="item-anchor" href="./Generator/dataGenerator.html">Generator</a></li>
+          <li class="nav-item"><a class="item-anchor" href="./Simulator/damageSimulator.html">Simulator</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <h3>목표</h3>
-  <ol>
-    <li>적의 방어력을 고려한 데미지 시뮬레이팅</li>
-    <li>스킬 강화 데미지 적용</li>
-    <li>버프/디버프 적용</li>
-  </ol>
+  <!-- Header -->
+  <div class="span12">
+    <div class="col-md-6 no-gutter text-center fill">
+      <div class="vtop">
+        <h1>Epic7 Simulator</h1>
+      </div>
+      <div class="vleftcenter text-left">
+        <h3>목표</h3>
+        <ol>
+          <li>적의 방어력을 고려한 데미지 시뮬레이팅</li>
+          <li>스킬 강화 데미지 적용</li>
+          <li>버프/디버프 적용</li>
+        </ol>
 
-  <h3>기능</h3>
-  <ul>
-    <li><a href="./Simulator/damageSimulator.html">데미지 시뮬레이터</a></li>
-    <li><a href="./Generator/dataGenerator.html">데이터 생성기</a></li>
-  </ul>
+        <h3>참조</h3>
+        <ul>          
+          <li><a id="api_link" href="#">Electron API</a></li>
+          <li><a id="skill_link" href="#">스킬 데이터</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6 no-gutter text-center fill">
+      <div id="header" data-speed="2" data-type="background">
+        <div id="headslide" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner" role="listbox">
 
-  <h3>참조</h3>
-  <ul>
-    <li><a target="blank" href="https://electronjs.org/docs/api">Electron API 링크</a></li>
-    <li><a target="blank" href="https://docs.google.com/spreadsheets/d/1aqL0Uj26PRW_jAUj8pYaSls_DOuFq30fvwQh8ol74-E/edit#gid=0">스킬데이터링크</a></li>
-  </ul>
+            <div class="item active">
+              <img src="../Image/main_wall.jpg" alt="Slide">
+            </div>
 
-  <script>
-    require('./renderer.js')              
-  </script>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="clear:both;"></div>
+
+    <script>      
+      require('./toggleMenu.js')
+      require('./renderer.js')
+    </script>
 </body>
 
 </html>

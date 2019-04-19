@@ -1,3 +1,9 @@
-// This file is required by the index.html file and will
-// be executed in the renderer process for that window.
-// All of the Node.js APIs are available in this process.
+const { shell } = require('electron')
+
+document.getElementById('api_link').addEventListener('click', () => {
+    shell.openExternal('https://electronjs.org/docs/api')
+})
+
+document.getElementById('skill_link').addEventListener('click', () => {
+    shell.openExternal('https://docs.google.com/spreadsheets/d/1aqL0Uj26PRW_jAUj8pYaSls_DOuFq30fvwQh8ol74-E/edit#gid=0')
+})
