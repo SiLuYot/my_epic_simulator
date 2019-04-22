@@ -6,9 +6,14 @@ class HeroManager {
         this.fixedConst = 1.871
     }
 
+    loadHeroToJson(){
+        let table = []
+        
+    }
+
     getHeroAttackPower(hero, enemy, useSkillIndex, isUseSoulBun) {
         let power = hero.getHeroAttackPower(useSkillIndex, isUseSoulBun) * this.fixedConst
-        power += power*0.15
+        
         //element = 속성 이점이 있을경우 1.1, 아니면 1
         let isAdvantageElement = hero.element.isAdvantageElement(enemy.element)
         let elementValue = isAdvantageElement ? 1.1 : 1
@@ -16,11 +21,11 @@ class HeroManager {
         return power * elementValue / (enemy.def / 300 + 1)
     }
 
-    attackSimulate(hero) {
+    attackSimulate(hero, useSkillNum) {
         let testHero = hero
         let testEnemy = new Enemy.BaseEnemy(55, new Element.EarthElement())
 
-        let skillPower = this.getHeroAttackPower(testHero, testEnemy, 2, false)
+        let skillPower = this.getHeroAttackPower(testHero, testEnemy, useSkillNum, false)
         //skillPower = Math.round(skillPower);
 
         let hitMiss = (skillPower * 0.75)
@@ -31,7 +36,7 @@ class HeroManager {
         let msg =
         `
         hitMiss ${hitMiss}
-        hitNomarl ${hitNomarl}
+        hitNormal ${hitNomarl}
         hitHard ${hitHard}
         hitCritical ${hitCritical}
         `

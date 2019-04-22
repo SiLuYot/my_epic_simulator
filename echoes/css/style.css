@@ -73,6 +73,13 @@ a:visited {
     -webkit-transform: translateX(10%) translateY(-50%);
     -ms-transform: translateX(10%) translateY(-50%);
 }
+.vbasetop{
+    position: relative;
+    top: 14%;
+    transform: translateY(14%);
+    -webkit-transform: translateY(14%);
+    -ms-transform: translateY(14%);
+}
 .fill {
     height: 100vh;
 }

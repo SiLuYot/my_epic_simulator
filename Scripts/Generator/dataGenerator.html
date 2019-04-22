@@ -6,12 +6,12 @@
     <title>Data Generator</title>
 
     <link rel="stylesheet" href="../../echoes/css/bootstrap.css">
-    <link rel="stylesheet" href="../../echoes/css/style.css">    
+    <link rel="stylesheet" href="../../echoes/css/style.css">
 </head>
 
 <body>
-
-    <nav class="navbar navbar-default color-fill navbar-fixed-top">
+    <!-- color-fill -->
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="col-md-12">
             <div class="nav">
                 <button class="btn-nav">
@@ -26,7 +26,8 @@
             <div class="nav-content hideNav hidden">
                 <ul class="nav-list vcenter">
                     <li class="nav-item"><a class="item-anchor" href="../index.html">Home</a></li>
-                    <li class="nav-item"><a class="item-anchor" href="../Generator/dataGenerator.html">Generator</a></li>
+                    <li class="nav-item"><a class="item-anchor" href="../Generator/dataGenerator.html">Generator</a>
+                    </li>
                     <li class="nav-item"><a class="item-anchor" href="../Simulator/damageSimulator.html">Simulator</a>
                     </li>
                 </ul>
@@ -34,58 +35,54 @@
         </div>
     </nav>
 
+    <div style="position: absolute; width: 300px; padding: 10px">
+        <div class="vbasetop">
+            <p><strong>이름</strong><br>
+                <input type="text" id="name">
+            </p>
 
+            <p><strong>속성</strong>
+                <select id="element" style="height: 25px;">
+                    <option value="0">불</option>
+                    <option value="1">얼음</option>
+                    <option value="2">자연</option>
+                    <option value="3">빛</option>
+                    <option value="4">어둠</option>
+                </select>
+            </p>
 
+            <strong>스킬1</strong><br>
+            <input type="number" id="att_rate_1" placeholder="attack rate"><br>
+            <input type="number" id="pow_1" placeholder="pow"><br>
+            <input type="number" id="soul_burn_1" placeholder="soul burn"><br>
 
-    <h1>Data Generator</h1>
+            <strong>스킬2</strong><br>
+            <input type="number" id="att_rate_2" placeholder="attack rate"><br>
+            <input type="number" id="pow_2" placeholder="pow"><br>
+            <input type="number" id="soul_burn_2" placeholder="soul burn"><br>
 
-    <table border="1">
-        <tr>
-            <td align="left" valign="top">
-                <p>이름<br>
-                    <input type="text" id="name">
-                </p>
+            <strong>스킬3</strong><br>
+            <input type="number" id="att_rate_3" placeholder="attack rate"><br>
+            <input type="number" id="pow_3" placeholder="pow"><br>
+            <input type="number" id="soul_burn_3" placeholder="soul burn"><br>
+        </div>
+    </div>
+    <div style="position: relative; top: 620px; padding: 10px;">
+        <div>
+            <input type="button" id="create" value="생성" style="width:200px;">
+        </div>
 
-                <p> 속성
-                    <select id="element" style="height: 25px;">
-                        <option value="0">불</option>
-                        <option value="1">얼음</option>
-                        <option value="2">자연</option>
-                        <option value="3">빛</option>
-                        <option value="4">어둠</option>
-                    </select>
-                </p>
-
-                <strong>스킬1</strong><br>
-                <input type="number" id="att_rate_1" placeholder="attack rate"><br>
-                <input type="number" id="pow_1" placeholder="pow"><br>
-                <input type="number" id="soul_burn_1" placeholder="soul burn"><br>
-
-                <strong>스킬2</strong><br>
-                <input type="number" id="att_rate_2" placeholder="attack rate"><br>
-                <input type="number" id="pow_2" placeholder="pow"><br>
-                <input type="number" id="soul_burn_2" placeholder="soul burn"><br>
-
-                <strong>스킬3</strong><br>
-                <input type="number" id="att_rate_3" placeholder="attack rate"><br>
-                <input type="number" id="pow_3" placeholder="pow"><br>
-                <input type="number" id="soul_burn_3" placeholder="soul burn"><br>
-            </td>
-            <td>
-                <strong>생성된 Json</strong><br>
-                <textarea id="result" cols="70" rows="30"></textarea><br>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <input type="button" id="create" value="생성" style="width:100%"><br>
-            </td>
-        </tr>
-    </table>
-
+    </div>
+    <div style="position: relative; width: 70%; left: 350px;">
+        <div>
+            <strong>생성된 Json</strong><br>
+            <textarea id="result" cols="50" rows="18"></textarea><br>
+        </div>
+    </div>
+    
     <script>
         require('../toggleMenu.js')
-        require('./dataGenerator.js')              
+        require('./dataGenerator.js')
     </script>
 </body>
 
