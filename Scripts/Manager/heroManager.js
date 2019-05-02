@@ -3,12 +3,14 @@ const Enemy = require('../Data/enemy')
 
 class HeroManager {
     constructor() {
-        this.fixedConst = 1.871
-    }
+        if(!!HeroManager.instance){
+            return HeroManager.instance
+        }
+        HeroManager.instance = this;
 
-    loadHeroToJson(){
-        let table = []
-        
+        this.fixedConst = 1.871
+
+        return this;
     }
 
     getHeroAttackPower(hero, enemy, useSkillIndex, isUseSoulBun) {

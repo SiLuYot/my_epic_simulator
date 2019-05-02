@@ -1,7 +1,7 @@
 const { shell } = require('electron')
 
-document.getElementById('api_link').addEventListener('click', () => {
-    shell.openExternal('https://electronjs.org/docs/api')
+document.getElementById('electron_link').addEventListener('click', () => {
+    shell.openExternal('https://electronjs.org/')
 })
 
 document.getElementById('skill_link').addEventListener('click', () => {

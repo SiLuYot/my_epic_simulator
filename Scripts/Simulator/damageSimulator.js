@@ -1,9 +1,12 @@
 const skill = require('../Data/skill')
 const hero = require('../Data/hero')
 const element = require('../Data/element')
-const manager = require('../Manager/heroManager')
 
-const heroManager = new manager.HeroManager();
+const heroManager = require('../Manager/heroManager')
+const heroInstance = new heroManager.HeroManager();
+
+const dataManager = require('../Manager/dataManager')
+const dataInstance = new dataManager.DataManager();
 
 // let skill1 = new skill.BaseSkill(1.5, 0.95, 0)
 // let skill2 = new skill.BaseSkill(1.2, 0.95, 0)
@@ -16,6 +19,16 @@ const heroManager = new manager.HeroManager();
 
 // alert(msg)
 
-function setHeroList(){
+window.onload = () => {
+    setHeroList()
+}
 
+function setHeroList(){
+    let heroListForm = document.heroListForm;
+
+    let op = new Option()
+    op.value = 1
+    op.text = 'test'
+
+    heroListForm.heroList.options.add(op)
 }

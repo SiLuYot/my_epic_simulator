@@ -1,8 +1,21 @@
 const hero = require('../Data/hero')
-const fs = require('fs');
 const jsonFilePath = './Json/heroData.txt'
 
+const dataManager = require('../Manager/dataManager')
+const dataInstance = new dataManager.DataManager();
+
 document.getElementById('create').onclick = () => {
+    //입력된 데이터를 바탕으로 새로운 영웅 생성
+    let newHero = GetNewHeroData();
+    //json 미리보기에 표시
+    document.getElementById('result').value = JSON.stringify(newHero, null, 4)
+    //데이터 추가 후
+    dataInstance.addData(newHero)
+    //추가된 테이블 새로 작성
+    dataInstance.writeJson(jsonFilePath)
+}
+
+function GetNewHeroData(){
     let name = document.getElementById('name').value
     let element = document.getElementById('element').value
 
@@ -23,96 +36,5 @@ document.getElementById('create').onclick = () => {
         att_rate_2, pow_2, soul_burn_2,
         att_rate_3, pow_3, soul_burn_3)
 
-    //json 미리보기에 표시
-    document.getElementById('result').value = JSON.stringify(newHero, null, 4)
-
-    //데이터 작성
-    // writeJsonToFile(newHero, (err) => {
-    //     if (err) {
-    //         console.log(err)
-    //     }
-    //     else {
-    //         alert('생성완료');
-    //     }
-    // })
-    dataGenerateProcess(newHero)
-}
-
-async function dataGenerateProcess(newHero) {
-    checkJson(() => {
-        readJson((table) => {
-            addJson(newHero, table, (newTable) => {
-                writeJson(newTable)
-            })
-        })
-    })
-}
-
-function checkJson(callback) {
-    fs.exists(jsonFilePath, (isExists) => {
-        if (!isExists) {
-            let table = []
-            fs.writeFile(jsonFilePath, JSON.stringify(table, null, 4), 'utf8', callback)
-        }
-        else {
-            callback()
-        }
-    })
-}
-
-function readJson(callback) {
-    let table = []
-    fs.readFile(jsonFilePath, 'utf8', (err, data) => {
-        if (err) {
-            console.log(err)
-        }
-        else {
-            if (data !== null) {
-                table = JSON.parse(data)
-            }
-            callback(table)
-        }
-    })
-}
-
-function addJson(newHero, table, callback) {
-    table.push(newHero)
-    callback(table)
-}
-
-function writeJson(table) {
-    newJson = JSON.stringify(table, null, 4)
-    fs.writeFile(jsonFilePath, newJson, 'utf8', (err) => {
-        if (err) {
-            console.log(err)
-        }
-        else {
-            alert('생성완료');
-        }
-    })
-}
-
-function writeJsonToFile(newHero, callback) {
-    let table = []
-
-    fs.readFile(jsonFilePath, 'utf8', (err, data) => {
-        if (err) {
-            fs.exists(jsonFilePath, (isExists) => {
-                if (!isExists) {
-                    table.push(newHero)
-                    newJson = JSON.stringify(table, null, 4)
-                    fs.writeFile(jsonFilePath, newJson, 'utf8', callback)
-                }
-            })
-        }
-        else {
-            if (data !== null) {
-                table = JSON.parse(data)
-            }
-
-            table.push(newHero)
-            newJson = JSON.stringify(table, null, 4)
-            fs.writeFile(jsonFilePath, newJson, 'utf8', callback)
-        }
-    })
+    return newHero
 }
