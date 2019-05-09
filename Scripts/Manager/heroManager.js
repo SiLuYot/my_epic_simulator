@@ -14,6 +14,10 @@ class HeroManager {
         return this
     }
 
+    setDataList(list){
+        this.heroList = list
+    }
+
     getHeroAttackPower(hero, enemy, useSkillIndex, isUseSoulBun) {
         let power = hero.getHeroAttackPower(useSkillIndex, isUseSoulBun) * this.fixedConst
         

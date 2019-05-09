@@ -1,5 +1,15 @@
 const { shell } = require('electron')
 
+const jsonManager = require('./Manager/jsonManager')
+const jsonInstance = new jsonManager.JsonManager();
+
+const heroManager = require('./Manager/heroManager')
+const heroInstance = new heroManager.HeroManager();
+
+window.onload = () => {
+
+}
+
 document.getElementById('electron_link').addEventListener('click', () => {
     shell.openExternal('https://electronjs.org/')
 })

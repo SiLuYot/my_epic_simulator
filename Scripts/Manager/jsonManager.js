@@ -1,27 +1,48 @@
 const fs = require('fs');
-const heroDataPath = './Json/heroData.txt'
 
-class DataManager{
+let instance = null
+
+class JsonManager{
     constructor(){
-        if(!!DataManager.instance){
-            return DataManager.instance;
+        if(!!instance){
+            return instance;
         }
-        DataManager.instance = this;
+        instance = this
 
+        this.heroDataPath = './Json/heroData.txt'
+
+        this.addCommand = null        
         this.heroTable = []
+
         this.init();
 
-        return this;
+        return this
     }
 
     init() {
-        this.checkJson(heroDataPath, () =>
-            this.readJson(heroDataPath, (table) => {
-                this.heroTable = table;
-            }))
+        this.initProcess(this.heroDataPath, (readTable) => {
+            this.heroTable = readTable
+        })
     }
 
-    checkJson(path, callback) {        
+    initProcess(path, callback) {
+        this.checkJson(path, () =>
+            this.readJson(path, callback))
+    }
+
+    setAddCommand(command){
+        this.addCommand = command
+    }
+
+    addProcess(newHero) {
+        let command = this.addCommand
+
+        if (command !== null) {
+            command.execute(newHero)
+        }
+    }
+
+    checkJson(path, callback) {
         fs.exists(path, (isExists) => {
 
             if (!isExists) {
@@ -62,15 +83,8 @@ class DataManager{
             }
         })
     }
-
-    addData(newData, callback = null) {
-        this.heroTable.push(newData)
-
-        if (callback !== null)
-            callback(table)
-    }
 }
 
 module.exports = {
-    DataManager: DataManager,
+    JsonManager: JsonManager,
 }

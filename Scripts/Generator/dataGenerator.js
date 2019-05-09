@@ -1,18 +1,18 @@
 const hero = require('../Data/hero')
-const jsonFilePath = './Json/heroData.txt'
+const command = require('../Command/command')
 
-const dataManager = require('../Manager/dataManager')
-const dataInstance = new dataManager.DataManager();
+const jsonManager = require('../Manager/jsonManager')
+const jsonInstance = new jsonManager.JsonManager()
 
 document.getElementById('create').onclick = () => {
     //입력된 데이터를 바탕으로 새로운 영웅 생성
     let newHero = GetNewHeroData();
     //json 미리보기에 표시
     document.getElementById('result').value = JSON.stringify(newHero, null, 4)
-    //데이터 추가 후
-    dataInstance.addData(newHero)
-    //추가된 테이블 새로 작성
-    dataInstance.writeJson(jsonFilePath)
+    //커맨드 변경
+    jsonInstance.setAddCommand(new command.HeroAddCommand())
+    //추가 실행
+    jsonInstance.addProcess(newHero)
 }
 
 function GetNewHeroData(){

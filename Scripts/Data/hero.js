@@ -1,5 +1,6 @@
 const Skill = require('./skill')
 
+//json 데이터
 class HeroData{
     constructor(name, element, 
         att_rate_1, pow_1, soul_burn_1,
