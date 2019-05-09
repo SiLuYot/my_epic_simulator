@@ -9,8 +9,9 @@ class HeroManager {
         HeroManager.instance = this;
 
         this.fixedConst = 1.871
-
-        return this;
+        this.heroList = []
+        
+        return this
     }
 
     getHeroAttackPower(hero, enemy, useSkillIndex, isUseSoulBun) {

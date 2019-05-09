@@ -57,6 +57,22 @@ class DarkElement extends Element {
     }
 }
 
+function indexToElement(index) {
+
+    switch (Number(index)) {
+        case 0:
+            return new FireElement()
+        case 1:
+            return new IceElement()
+        case 2:
+            return new EarthElement()
+        case 3:
+            return new LightElement()
+        case 4:
+            return new DarkElement()
+    }
+}
+
 module.exports = {
     Element: Element,
     FireElement: FireElement,
@@ -64,4 +80,5 @@ module.exports = {
     EarthElement: EarthElement,
     LightElement: LightElement,
     DarkElement: DarkElement,
+    IndexToElement: indexToElement,
 }

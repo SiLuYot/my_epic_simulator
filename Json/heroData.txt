@@ -1,128 +1,24 @@
 [
     {
-        "name": "",
-        "element": "0",
+        "name": "dizzy",
+        "element": "1",
         "skillSet": {
             "skillArray": [
                 {
-                    "attackRate": 0,
-                    "pow": 0,
+                    "attackRate": 0.7,
+                    "pow": 1,
                     "soulBunAttackRate": 0,
                     "isSoulBunSkill": false
                 },
                 {
-                    "attackRate": 0,
-                    "pow": 0,
+                    "attackRate": 1,
+                    "pow": 1,
                     "soulBunAttackRate": 0,
                     "isSoulBunSkill": false
                 },
                 {
-                    "attackRate": 0,
-                    "pow": 0,
-                    "soulBunAttackRate": 0,
-                    "isSoulBunSkill": false
-                }
-            ]
-        }
-    },
-    {
-        "name": "test",
-        "element": "0",
-        "skillSet": {
-            "skillArray": [
-                {
-                    "attackRate": 0,
-                    "pow": 0,
-                    "soulBunAttackRate": 0,
-                    "isSoulBunSkill": false
-                },
-                {
-                    "attackRate": 0,
-                    "pow": 0,
-                    "soulBunAttackRate": 0,
-                    "isSoulBunSkill": false
-                },
-                {
-                    "attackRate": 0,
-                    "pow": 0,
-                    "soulBunAttackRate": 0,
-                    "isSoulBunSkill": false
-                }
-            ]
-        }
-    },
-    {
-        "name": "test2",
-        "element": "0",
-        "skillSet": {
-            "skillArray": [
-                {
-                    "attackRate": 0,
-                    "pow": 0,
-                    "soulBunAttackRate": 0,
-                    "isSoulBunSkill": false
-                },
-                {
-                    "attackRate": 0,
-                    "pow": 0,
-                    "soulBunAttackRate": 0,
-                    "isSoulBunSkill": false
-                },
-                {
-                    "attackRate": 0,
-                    "pow": 0,
-                    "soulBunAttackRate": 0,
-                    "isSoulBunSkill": false
-                }
-            ]
-        }
-    },
-    {
-        "name": "123123",
-        "element": "0",
-        "skillSet": {
-            "skillArray": [
-                {
-                    "attackRate": 12,
-                    "pow": 12,
-                    "soulBunAttackRate": 0,
-                    "isSoulBunSkill": false
-                },
-                {
-                    "attackRate": 0,
-                    "pow": 0,
-                    "soulBunAttackRate": 0,
-                    "isSoulBunSkill": false
-                },
-                {
-                    "attackRate": 0,
-                    "pow": 0,
-                    "soulBunAttackRate": 0,
-                    "isSoulBunSkill": false
-                }
-            ]
-        }
-    },
-    {
-        "name": "11111",
-        "element": "4",
-        "skillSet": {
-            "skillArray": [
-                {
-                    "attackRate": 12,
-                    "pow": 12,
-                    "soulBunAttackRate": 0,
-                    "isSoulBunSkill": false
-                },
-                {
-                    "attackRate": 0,
-                    "pow": 0,
-                    "soulBunAttackRate": 0,
-                    "isSoulBunSkill": false
-                },
-                {
-                    "attackRate": 0,
-                    "pow": 0,
+                    "attackRate": 2.5,
+                    "pow": 1,
                     "soulBunAttackRate": 0,
                     "isSoulBunSkill": false
                 }
