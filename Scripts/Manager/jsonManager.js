@@ -1,27 +1,19 @@
 const fs = require('fs');
 
-let instance = null
-
-class JsonManager{
-    constructor(){
-        if(!!instance){
-            return instance;
-        }
-        instance = this
-
+class JsonManager {
+    constructor() {
         this.heroDataPath = './Json/heroData.txt'
 
-        this.addCommand = null        
+        this.addCommand = null
         this.heroTable = []
-
-        this.init();
-
-        return this
     }
 
-    init() {
-        this.initProcess(this.heroDataPath, (readTable) => {
+    init(callback) {                
+        this.initProcess(this.heroDataPath, (readTable) => {            
             this.heroTable = readTable
+
+            if (callback != null)
+                callback()
         })
     }
 
@@ -30,7 +22,7 @@ class JsonManager{
             this.readJson(path, callback))
     }
 
-    setAddCommand(command){
+    setAddCommand(command) {
         this.addCommand = command
     }
 
@@ -85,6 +77,8 @@ class JsonManager{
     }
 }
 
+const instance = new JsonManager()
+
 module.exports = {
-    JsonManager: JsonManager,
+    instance: instance
 }

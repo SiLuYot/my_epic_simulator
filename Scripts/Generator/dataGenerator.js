@@ -2,7 +2,10 @@ const hero = require('../Data/hero')
 const command = require('../Command/command')
 
 const jsonManager = require('../Manager/jsonManager')
-const jsonInstance = new jsonManager.JsonManager()
+
+window.onload = () => {
+    jsonManager.instance.init()    
+}
 
 document.getElementById('create').onclick = () => {
     //입력된 데이터를 바탕으로 새로운 영웅 생성
@@ -10,9 +13,9 @@ document.getElementById('create').onclick = () => {
     //json 미리보기에 표시
     document.getElementById('result').value = JSON.stringify(newHero, null, 4)
     //커맨드 변경
-    jsonInstance.setAddCommand(new command.HeroAddCommand())
+    jsonManager.instance.setAddCommand(new command.HeroAddCommand())
     //추가 실행
-    jsonInstance.addProcess(newHero)
+    jsonManager.instance.addProcess(newHero)
 }
 
 function GetNewHeroData(){

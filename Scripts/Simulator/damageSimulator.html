@@ -34,30 +34,27 @@
         </div>
     </nav>
 
-    <div style="position: absolute; width: 300px; padding: 10px">
-        <div class="vbasetop">
-            <p>
-                <!-- <strong>영웅목록</strong>
-                <select id="heroList" style="height: 25px;">
-                </select>
+    <div style="position: absolute; top: 100px; width: 300px; padding: 10px">
+        <strong>영웅목록</strong><br>
+        <select id="heroList" style="height: 25px;">
+        </select><br>
 
-                <input type="button" id="simulate" value="Go!" style="width:200px;"> -->
-                <!-- <form name="heroListForm">
-                    <select name="heroList" style="height: 25px;">
-                    </select>
-                </form> -->
-            </p>
-        </div>
+        <strong>공격력</strong><br>
+        <input type="number" id="attack_value"><br>
+
+        <strong>크리티컬 데미지 (%)</strong><br>
+        <input type="number" id="critical_value"><br>
     </div>
     <div style="position: relative; top: 620px; padding: 10px;">
-        <strong>영웅목록</strong>
+        <!-- <strong>영웅목록</strong>
         <select id="heroList" style="height: 25px;">
-        </select>
+        </select> -->
 
         <input type="button" id="simulate" value="Go!" style="width:200px;">
     </div>
     <div style="position: relative; width: 70%; left: 350px;">
-
+        <strong>결과 (소수점 3자리까지. 이후 반올림)</strong><br>
+        <textarea id="result" cols="50" rows="18"></textarea><br>
     </div>
 </body>
 

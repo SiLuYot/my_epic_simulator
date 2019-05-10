@@ -1,15 +1,25 @@
-const { shell } = require('electron')
+const { shell, remote } = require('electron')
 
 const jsonManager = require('./Manager/jsonManager')
-const jsonInstance = new jsonManager.JsonManager();
+//mainWindow.webContents.once('dom-ready', () => {});
+// window.onload = () => {
+//     jsonManager.instance.init()
+// }
+// remote.getCurrentWindow().webContents.once('dom-ready', () => {
+//     jsonManager.instance.init()
+// })
 
-const heroManager = require('./Manager/heroManager')
-const heroInstance = new heroManager.HeroManager();
+document.getElementById('index').addEventListener('click', () => {
+    remote.getCurrentWindow().loadFile('./Scripts/index.html')
+})
 
-window.onload = () => {
+document.getElementById('generator').addEventListener('click', () => {
+    remote.getCurrentWindow().loadFile('./Scripts/Generator/dataGenerator.html')
+})
 
-}
-
+document.getElementById('simulator').addEventListener('click', () => {
+    remote.getCurrentWindow().loadFile('./Scripts/Simulator/damageSimulator.html')
+})
 document.getElementById('electron_link').addEventListener('click', () => {
     shell.openExternal('https://electronjs.org/')
 })
