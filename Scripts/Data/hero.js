@@ -14,29 +14,17 @@ class HeroData{
         let skill2 = new Skill.BaseSkill(Number(att_rate_2), Number(pow_2), Number(soul_burn_2))
         let skill3 = new Skill.BaseSkill(Number(att_rate_3), Number(pow_3), Number(soul_burn_3))
 
-        this.skillSet = new Skill.SkillSet(skill1, skill2, skill3)
+        this.skillArray = [skill1, skill2, skill3]
     }
 }
 
+//실제로 사용할 데이터
 class BaseHero {
-    constructor(attack, criticalDmg, element, skillSet) {
+    constructor(attack, criticalDmg, element, skillArray) {
         this.attack = attack
         this.criticalDmg = criticalDmg * 0.01
         this.element = element
-        this.skillSet = skillSet
-    }
-
-    getHeroAttackPower(skillIndex, isUseSoulBun) {
-        //attack * att_rate * pow        
-        let skill = this.skillSet.skillArray[skillIndex]
-        let attackRate = skill.attackRate
-
-        if (isUseSoulBun)
-            attackRate = skill.isSoulBunSkill ? skill.soulBunAttackRate : skill.attackRate
-        
-        let value = this.attack * attackRate * skill.pow
-        //value += value * 0.15
-        return value
+        this.skillArray = skillArray
     }
 }
 

@@ -4,7 +4,9 @@ const command = require('../Command/command')
 const jsonManager = require('../Manager/jsonManager')
 
 window.onload = () => {
-    jsonManager.instance.init()    
+    jsonManager.instance.init(() => {        
+
+    })
 }
 
 document.getElementById('create').onclick = () => {
@@ -18,7 +20,7 @@ document.getElementById('create').onclick = () => {
     jsonManager.instance.addProcess(newHero)
 }
 
-function GetNewHeroData(){
+function GetNewHeroData() {
     let name = document.getElementById('name').value
     let element = document.getElementById('element').value
 

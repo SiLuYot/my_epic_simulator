@@ -172,7 +172,7 @@ a:visited {
     background-color: #222;
 }
 .icon-bar.inverted {
-    background-color: #fff;
+    background-color: #222;
 }
 @media (max-width: 992px) {
     .icon-bar.inverted {
@@ -180,7 +180,7 @@ a:visited {
     }
 }
 .opaque {
-    background-color: #fff!important;
+    background-color:  #222!important;
 }
 .btn-nav:hover .icon-bar {
     -webkit-transition: all 1s ease;
@@ -196,7 +196,7 @@ a:visited {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 0.8);
     display: block;
     height: 100%;
     z-index: 9;

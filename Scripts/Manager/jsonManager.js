@@ -52,11 +52,16 @@ class JsonManager {
         let table = []
         fs.readFile(path, 'utf8', (err, data) => {
             if (err) {
+                alert('Json Read Error\n' + err)
                 console.log(err)
             }
             else {
                 if (data !== null) {
-                    table = JSON.parse(data)
+                    try {
+                        table = JSON.parse(data)
+                    } catch (error) {
+                        alert('Json Read Error\n' + error)
+                    }                    
                 }
                 callback(table)
             }

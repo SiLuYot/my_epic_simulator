@@ -1,25 +1,5 @@
-const { shell, remote } = require('electron')
+const { shell } = require('electron')
 
-const jsonManager = require('./Manager/jsonManager')
-//mainWindow.webContents.once('dom-ready', () => {});
-// window.onload = () => {
-//     jsonManager.instance.init()
-// }
-// remote.getCurrentWindow().webContents.once('dom-ready', () => {
-//     jsonManager.instance.init()
-// })
-
-document.getElementById('index').addEventListener('click', () => {
-    remote.getCurrentWindow().loadFile('./Scripts/index.html')
-})
-
-document.getElementById('generator').addEventListener('click', () => {
-    remote.getCurrentWindow().loadFile('./Scripts/Generator/dataGenerator.html')
-})
-
-document.getElementById('simulator').addEventListener('click', () => {
-    remote.getCurrentWindow().loadFile('./Scripts/Simulator/damageSimulator.html')
-})
 document.getElementById('electron_link').addEventListener('click', () => {
     shell.openExternal('https://electronjs.org/')
 })

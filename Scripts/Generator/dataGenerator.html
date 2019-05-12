@@ -11,7 +11,7 @@
 
 <body>
     <!-- color-fill -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default color-fill navbar-fixed-top">
         <div class="col-md-12">
             <div class="nav">
                 <button class="btn-nav">
@@ -20,15 +20,14 @@
                     <span class="icon-bar inverted bottom"></span>
                 </button>
             </div>
-            <a class="navbar-brand" href="../index.html">
+            <a class="navbar-brand" id="home" href="#">
                 <img class="logo" src="../../echoes/img/logo.png" alt="logo">
             </a>
             <div class="nav-content hideNav hidden">
                 <ul class="nav-list vcenter">
-                    <li class="nav-item"><a class="item-anchor" href="../index.html">Home</a></li>
-                    <li class="nav-item"><a class="item-anchor" href="../Generator/dataGenerator.html">Generator</a>
-                    </li>
-                    <li class="nav-item"><a class="item-anchor" href="../Simulator/damageSimulator.html">Simulator</a>
+                    <li class="nav-item"><a class="item-anchor" id="index" href="#">Home</a></li>
+                    <li class="nav-item"><a class="item-anchor" id="generator" href="#">Generator</a></li>
+                    <li class="nav-item"><a class="item-anchor" id="simulator" href="#">Simulator</a></li>
                     </li>
                 </ul>
             </div>
@@ -73,7 +72,7 @@
         </div>
 
     </div>
-    <div style="position: relative; width: 70%; left: 350px;">
+    <div style="position: relative; width: 70%; left: 350px; padding: 20px">
         <div>
             <strong>생성된 Json</strong><br>
             <textarea id="result" cols="50" rows="18"></textarea><br>

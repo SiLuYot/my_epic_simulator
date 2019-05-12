@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default color-fill navbar-fixed-top">
         <div class="col-md-12">
             <div class="nav">
                 <button class="btn-nav">
@@ -19,48 +19,96 @@
                     <span class="icon-bar inverted bottom"></span>
                 </button>
             </div>
-            <a class="navbar-brand" href="../index.html">
+            <a class="navbar-brand" id="home" href="#">
                 <img class="logo" src="../../echoes/img/logo.png" alt="logo">
             </a>
             <div class="nav-content hideNav hidden">
                 <ul class="nav-list vcenter">
-                    <li class="nav-item"><a class="item-anchor" href="../index.html">Home</a></li>
-                    <li class="nav-item"><a class="item-anchor" href="../Generator/dataGenerator.html">Generator</a>
-                    </li>
-                    <li class="nav-item"><a class="item-anchor" href="../Simulator/damageSimulator.html">Simulator</a>
+                    <li class="nav-item"><a class="item-anchor" id="index" href="#">Home</a></li>
+                    <li class="nav-item"><a class="item-anchor" id="generator" href="#">Generator</a></li>
+                    <li class="nav-item"><a class="item-anchor" id="simulator" href="#">Simulator</a></li>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div style="position: absolute; top: 100px; width: 300px; padding: 10px">
-        <strong>영웅목록</strong><br>
-        <select id="heroList" style="height: 25px;">
-        </select><br>
+    <div style="position: absolute; width: 300px; top: 100px; padding: 10px">
 
-        <strong>공격력</strong><br>
-        <input type="number" id="attack_value"><br>
+        <h3>공격</h3>
+        <strong>영웅</strong>
+        <p>
+            <select id="heroList" style="height: 25px;">
+            </select><br>    
+        </p>        
 
-        <strong>크리티컬 데미지 (%)</strong><br>
-        <input type="number" id="critical_value"><br>
+        <strong>공격력</strong>
+        <p>
+            <input type="number" id="attack_value"><br>
+        </p>        
+
+        <strong>크리티컬 데미지 (%)</strong>
+        <p>
+            <input type="number" id="critical_value"><br>    
+        </p>        
+
+        <strong>스킬강화로 올리간 데미지 (%)</strong>
+        <p>
+            <input type="number" id="skillMult_value"><br>
+        </p>        
+
+        <strong>버프</strong>
+        <p>
+            <label><input id="atkUp" type="checkbox" value="">공격력 증가 (+50%)</label><br>
+            <label><input id="atkGreateUp" type="checkbox" value="">공격력 증가 대 (+75%)</label><br>
+
+            <label><input id="speedUp" type="checkbox" value="">속도 증가 (+30%)</label><br>
+            <label><input id="speedGreateUp" type="checkbox" value="">속도 증가 대 (+45%)</label><br>
+
+            <label><input id="defUp" type="checkbox" value="">방어력 증가 (+60%)</label><br>
+
+            <label><input id="criticalDmgUp" type="checkbox" value="">치명피해 증가 (+50%)</label><br>
+        </p>
+        
     </div>
-    <div style="position: relative; top: 620px; padding: 10px;">
-        <!-- <strong>영웅목록</strong>
-        <select id="heroList" style="height: 25px;">
-        </select> -->
+    <div style="position: absolute; width: 300px; top: 100px; left: 350px; padding: 10px">
 
-        <input type="button" id="simulate" value="Go!" style="width:200px;">
-    </div>
-    <div style="position: relative; width: 70%; left: 350px;">
+        <h3>방어</h3>
+        <strong>속성</strong>
+        <p>
+            <select id="enemy_element" style="height: 25px;">
+                <option value="0">불</option>
+                <option value="1">얼음</option>
+                <option value="2" selected="selected">자연</option>
+                <option value="3">빛</option>
+                <option value="4">어둠</option>
+            </select>
+        </p>           
+
+        <strong>방어력</strong>
+        <p>
+            <input type="number" id="enemy_def" value="55"><br>
+        </p>
+
+        <strong>디버프</strong>
+        <p>
+            <label><input id="defDown" type="checkbox" value="">방어력 감소 (-30%)</label><br>
+            <label><input id="target" type="checkbox" value="">표적 (+15%)</label><br>
+        </p>
+        
+    </div>    
+    <div style="position: absolute; width: 500px; top: 70px; left: 700px; padding: 10px;">
         <strong>결과 (소수점 3자리까지. 이후 반올림)</strong><br>
-        <textarea id="result" cols="50" rows="18"></textarea><br>
+        <textarea id="result" cols="50" rows="16"></textarea><br>
+    </div>
+    <div style="position: fixed; height: 50px; bottom: 0; width: 100%; padding: 10px; background-color: #fff;">
+        <input type="button" id="simulate" value="Go!" style="width:200px;">
     </div>
 </body>
 
 <script>
     require('../toggleMenu.js')
-    require('./damageSimulator')              
+    require('./damageSimulator')
 </script>
 
 </html>
