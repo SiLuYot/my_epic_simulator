@@ -34,51 +34,69 @@
         </div>
     </nav>
 
-    <div style="position: absolute; width: 300px; padding: 10px">
-        <div class="vbasetop">
-            <p><strong>이름</strong><br>
-                <input type="text" id="name">
-            </p>
+    <div style="position: absolute; width: 300px; top: 100px; padding: 10px">
+        <p><strong>이름</strong><br>
+            <input type="text" id="name">
+        </p>
 
-            <p><strong>속성</strong>
-                <select id="element" style="height: 25px;">
-                    <option value="0">불</option>
-                    <option value="1">얼음</option>
-                    <option value="2">자연</option>
-                    <option value="3">빛</option>
-                    <option value="4">어둠</option>
-                </select>
-            </p>
+        <p><strong>속성</strong>
+            <select id="element" style="height: 25px;">
+                <option value="0">불</option>
+                <option value="1">얼음</option>
+                <option value="2">자연</option>
+                <option value="3">빛</option>
+                <option value="4">어둠</option>
+            </select>
+        </p>
 
-            <strong>스킬1</strong><br>
+        <p><strong>스킬1</strong><br>
+
+            <select id="skill_kind1" style="height: 25px;">
+            </select>
+            <input type="number" id="kind_rate_1" placeholder="addition rate" style="visibility:hidden"><br>
+
             <input type="number" id="att_rate_1" placeholder="attack rate"><br>
             <input type="number" id="pow_1" placeholder="pow"><br>
             <input type="number" id="soul_burn_1" placeholder="soul burn"><br>
 
-            <strong>스킬2</strong><br>
+        </p>
+        
+        <p><strong>스킬2</strong><br>
+
+            <select id="skill_kind2" style="height: 25px;">
+            </select>
+            <input type="number" id="kind_rate_2" placeholder="addition rate" style="visibility:hidden"><br>
+
             <input type="number" id="att_rate_2" placeholder="attack rate"><br>
             <input type="number" id="pow_2" placeholder="pow"><br>
             <input type="number" id="soul_burn_2" placeholder="soul burn"><br>
+          
+        </p>
+        
+        <p><strong>스킬3</strong><br>
 
-            <strong>스킬3</strong><br>
+            <select id="skill_kind3" style="height: 25px;">
+            </select>
+            <input type="number" id="kind_rate_3" placeholder="addition rate" style="visibility:hidden"><br>
+
             <input type="number" id="att_rate_3" placeholder="attack rate"><br>
             <input type="number" id="pow_3" placeholder="pow"><br>
             <input type="number" id="soul_burn_3" placeholder="soul burn"><br>
-        </div>
-    </div>
-    <div style="position: relative; top: 620px; padding: 10px;">
-        <div>
-            <input type="button" id="create" value="생성" style="width:200px;">
-        </div>
 
+        </p>
     </div>
-    <div style="position: relative; width: 70%; left: 350px; padding: 20px">
+    <div style="position: absolute; width: 500px; top: 70px; left: 700px; padding: 10px;">
         <div>
             <strong>생성된 Json</strong><br>
             <textarea id="result" cols="50" rows="18"></textarea><br>
         </div>
     </div>
-    
+    <div style="position: fixed; height: 50px; bottom: 0; width: 100%; padding: 10px;">
+        <div style="float: right;">
+            <input type="button" id="create" value="생성" style="width:200px;">
+        </div>
+    </div>
+
     <script>
         require('../toggleMenu.js')
         require('./dataGenerator.js')
