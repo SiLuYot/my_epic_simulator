@@ -1,7 +1,7 @@
 const hero = require('../Data/hero')
 const skill = require('../Data/skill')
 const command = require('../Command/command')
-const jsonManager = require('../Manager/jsonManager')
+const jsonInstance = require('../Manager/jsonManager').instance
 
 const skillKindTable = [
     new skill.SkillAttribute('none'),
@@ -11,10 +11,6 @@ const skillKindTable = [
 ]
 
 window.onload = () => {    
-    jsonManager.instance.init(() => {        
-
-    })
-
     let skill_kind1 = document.getElementById("skill_kind1")
     let skill_kind2 = document.getElementById("skill_kind2")
     let skill_kind3 = document.getElementById("skill_kind3")
@@ -40,9 +36,9 @@ document.getElementById('create').onclick = () => {
     //json 미리보기에 표시
     document.getElementById('result').value = JSON.stringify(newHero, null, 4)
     //커맨드 변경
-    jsonManager.instance.setAddCommand(new command.HeroAddCommand())
+    jsonInstance.setAddCommand(new command.HeroAddCommand())
     //추가 실행
-    jsonManager.instance.addProcess(newHero)
+    jsonInstance.addProcess(newHero)
 }
 
 function GetNewHeroData() {
@@ -67,9 +63,9 @@ function GetNewHeroData() {
     let skill_kind3 = document.getElementById("skill_kind3").value
     let kind_rate_3 = document.getElementById("kind_rate_3").value
 
-    let skillKindIndex1 = skillKindTable[skill_kind1.selectedIndex]
-    let skillKindIndex2 = skillKindTable[skill_kind2.selectedIndex]
-    let skillKindIndex3 = skillKindTable[skill_kind3.selectedIndex]
+    let skillKindIndex1 = skillKindTable[skill_kind1]
+    let skillKindIndex2 = skillKindTable[skill_kind2]
+    let skillKindIndex3 = skillKindTable[skill_kind3]
 
     let skill1 = new skill.BaseSkill(Number(att_rate_1), Number(pow_1), Number(kind_rate_1), Number(soul_burn_1),  skillKindIndex1)
     let skill2 = new skill.BaseSkill(Number(att_rate_2), Number(pow_2), Number(kind_rate_2), Number(soul_burn_2),  skillKindIndex2)

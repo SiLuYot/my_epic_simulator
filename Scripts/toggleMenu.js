@@ -2,7 +2,7 @@ const { remote } = require('electron')
 
 window.$ = window.jQuery = require('../echoes/js/jquery.js')
 
-// Toggle Menuㄴ
+// Toggle Menu
 $(window).load(function () {
     $(".btn-nav").on("click tap", function () {
         $(".nav-content").toggleClass("showNav hideNav").removeClass("hidden");

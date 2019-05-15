@@ -1,18 +1,17 @@
 const hero = require('../Data/hero')
 const element = require('../Data/element')
 const enemy = require('../Data/enemy')
+const skill = require('../Data/skill')
 
-const jsonManager = require('../Manager/jsonManager')
+const jsonInstance = require('../Manager/jsonManager').instance
 
 window.onload = () => {
-    jsonManager.instance.init(() => {
-        initHeroList()
-    })
+    initHeroList()
 }
 
 function initHeroList() {
     let heroList = document.getElementById("heroList")
-    let heroTable = jsonManager.instance.heroTable
+    let heroTable = jsonInstance.heroTable
 
     for (i = 0; i < heroTable.length; i++) {
         let op = new Option()
@@ -23,14 +22,15 @@ function initHeroList() {
     }
 }
 
-function getNumerator(skill, hero, attackRate, skillMult, elementMult){
+function getNumerator(heroSkill, hero, attackRate, skillMult, elementMult){
     const fixedConst = 1.871
 
     let atkTotal = hero.attack
-    let powerTotal = fixedConst * skill.pow
-    let multTotal = skillMult * elementMult * powerTotal    
-       
-    let numerator = skill.skillAttribute.getAdditionMult(hero, atkTotal, attackRate) * multTotal
+    let powerTotal = fixedConst * heroSkill.pow
+    let multTotal = skillMult * elementMult * powerTotal
+
+    let skillAttribute = new skill.SkillAttribute(heroSkill.skillAttribute)
+    let numerator = skillAttribute.getAdditionMult(hero, atkTotal, attackRate) * multTotal
     return numerator
 }
 
@@ -73,7 +73,7 @@ function calculateDamage(hero, enemy, useSkillIndex, skillMultValue) {
     let defDown = document.getElementById("defDown").checked
     let target = document.getElementById("target").checked
 
-    let skill = hero.skillArray[useSkillIndex]
+    let heroSkill = hero.skillArray[useSkillIndex]
 
     let atkMult = atkUp ? 1.5 : 1.0
     atkMult = atkGreateUp ? 1.75 : atkMult
@@ -94,7 +94,7 @@ function calculateDamage(hero, enemy, useSkillIndex, skillMultValue) {
     hero.speed *= speedMult
     hero.def *= defMult    
 
-    let numerator = getNumerator(skill, hero, skill.attackRate,
+    let numerator = getNumerator(heroSkill, hero, heroSkill.attackRate,
         skillMult, elementMult)        
     let denominator = getDenominator(enemy.def, enemyDefMult)
 
@@ -102,8 +102,8 @@ function calculateDamage(hero, enemy, useSkillIndex, skillMultValue) {
     Skill Index     :   ${useSkillIndex + 1}`
     msg += getDamageResult(numerator, denominator, hero.criticalDmg, criticalMult, totalMult)
 
-    if (skill.soulBunAttackRate !== 0) {
-        let numerator = getNumerator(skill, hero, skill.soulBunAttackRate,
+    if (heroSkill.soulBunAttackRate !== 0) {
+        let numerator = getNumerator(heroSkill, hero, heroSkill.soulBunAttackRate,
             skillMult, elementMult)           
         let denominator = getDenominator(enemy.def, enemyDefMult)
     
@@ -130,7 +130,7 @@ document.getElementById('simulate').onclick = () => {
     let enemyDefValue = document.getElementById("enemy_def").value
 
     let index = heroList.selectedIndex
-    let heroTableData = jsonManager.instance.heroTable[index]
+    let heroTableData = jsonInstance.heroTable[index]
 
     let heroData = new hero.BaseHero(attackValue, criticalValue, speedValue, defValue, hpValue, element.IndexToElement(heroTableData.element), heroTableData.skillArray)
     let enemyData = new enemy.BaseEnemy(enemyDefValue, element.IndexToElement(enemyElementValue))

@@ -1,98 +1,112 @@
 [
     {
-        "name": "디지",
         "element": "1",
+        "name": "디지",
         "skillArray": [
             {
                 "attackRate": 0.7,
                 "pow": 1,
-                "soulBunAttackRate": 0
+                "soulBunAttackRate": 0,
+                "skillAttribute": {
+                    "name": "none"
+                }
             },
             {
                 "attackRate": 1,
                 "pow": 1,
-                "soulBunAttackRate": 0
+                "soulBunAttackRate": 0,
+                "skillAttribute": {
+                    "name": "none"
+                }
             },
             {
                 "attackRate": 2.5,
                 "pow": 1,
-                "soulBunAttackRate": 0
+                "soulBunAttackRate": 0,
+                "skillAttribute": {
+                    "name": "none"
+                }
             }
         ]
     },
     {
-        "name": "비올레토",
         "element": "2",
+        "name": "비올레토",
         "skillArray": [
             {
                 "attackRate": 1,
                 "pow": 0.9,
-                "soulBunAttackRate": 0
+                "soulBunAttackRate": 0,
+                "skillAttribute": {
+                    "name": "none"
+                }
             },
             {
                 "attackRate": 0,
                 "pow": 0,
-                "soulBunAttackRate": 0
+                "soulBunAttackRate": 0,
+                "skillAttribute": {
+                    "name": "none"
+                }
             },
             {
                 "attackRate": 1.5,
                 "pow": 0.9,
-                "soulBunAttackRate": 0
+                "soulBunAttackRate": 0,
+                "skillAttribute": {
+                    "name": "none"
+                }
             }
         ]
     },
     {
-        "name": "비올레토 집중 5스텍",
         "element": "2",
+        "name": "비올레토 집중 5스텍",
         "skillArray": [
             {
                 "attackRate": 1,
                 "pow": 0.9,
-                "soulBunAttackRate": 0
+                "soulBunAttackRate": 0,
+                "skillAttribute": {
+                    "name": "none"
+                }
             },
             {
                 "attackRate": 0,
                 "pow": 0,
-                "soulBunAttackRate": 0
+                "soulBunAttackRate": 0,
+                "skillAttribute": {
+                    "name": "none"
+                }
             },
             {
                 "attackRate": 3.25,
                 "pow": 0.9,
-                "soulBunAttackRate": 0
+                "soulBunAttackRate": 0,
+                "skillAttribute": {
+                    "name": "none"
+            }
             }
         ]
     },
     {
-        "name": "월광 딩고",
         "element": "3",
+        "name": "월광 딩고",
         "skillArray": [
             {
                 "attackRate": 1.5,
                 "pow": 0.95,
-                "soulBunAttackRate": 0
+                "soulBunAttackRate": 0,
+                "skillAttribute": {
+                    "name": "none"
+                }
             },
             {
                 "attackRate": 1.2,
                 "pow": 0.95,
-                "soulBunAttackRate": 0
-            },
-            {
-                "attackRate": 0,
-                "pow": 0,
-                "soulBunAttackRate": 0
-            }
-        ]
-    },
-    {
-        "name": "속도",
-        "element": "0",
-        "skillArray": [
-            {
-                "attackRate": 1,
-                "pow": 1,
                 "soulBunAttackRate": 0,
                 "skillAttribute": {
-                    "name": "속도 비례"
+                    "name": "none"
                 }
             },
             {
@@ -101,96 +115,7 @@
                 "soulBunAttackRate": 0,
                 "skillAttribute": {
                     "name": "none"
-                }
-            },
-            {
-                "attackRate": 2,
-                "pow": 2,
-                "soulBunAttackRate": 2,
-                "skillAttribute": {
-                    "name": "속도 비례"
-                }
             }
-        ]
-    },
-    {
-        "name": "1",
-        "element": "0",
-        "skillArray": [
-            {
-                "attackRate": 1,
-                "pow": 1,
-                "additionRate": 0,
-                "soulBunAttackRate": null,
-                "skillAttribute": {
-                    "name": "none"
-                }
-            },
-            {
-                "attackRate": 1,
-                "pow": 1,
-                "additionRate": 0,
-                "soulBunAttackRate": null,
-                "skillAttribute": {
-                    "name": "none"
-                }
-            },
-            {
-                "attackRate": 1,
-                "pow": 1,
-                "additionRate": 0,
-                "soulBunAttackRate": null,
-                "skillAttribute": {
-                    "name": "none"
-                }
-            }
-        ]
-    },
-    {
-        "name": "1",
-        "element": "0",
-        "skillArray": [
-            {
-                "attackRate": 1,
-                "pow": 1,
-                "additionRate": 0,
-                "soulBunAttackRate": 0
-            },
-            {
-                "attackRate": 1,
-                "pow": 1,
-                "additionRate": 0,
-                "soulBunAttackRate": 0
-            },
-            {
-                "attackRate": 1,
-                "pow": 1,
-                "additionRate": 0,
-                "soulBunAttackRate": 0
-            }
-        ]
-    },
-    {
-        "name": "1",
-        "element": "0",
-        "skillArray": [
-            {
-                "attackRate": 1,
-                "pow": 1,
-                "additionRate": 0,
-                "soulBunAttackRate": 0
-            },
-            {
-                "attackRate": 1,
-                "pow": 1,
-                "additionRate": 0,
-                "soulBunAttackRate": 0
-            },
-            {
-                "attackRate": 1,
-                "pow": 1,
-                "additionRate": 0,
-                "soulBunAttackRate": 1
             }
         ]
     }

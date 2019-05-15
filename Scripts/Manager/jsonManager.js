@@ -1,24 +1,42 @@
-const fs = require('fs');
+'use strict'
+
+const { ipcRenderer } = require('electron')
+const fs = require('fs')
 
 class JsonManager {
-    constructor() {
-        this.dataPath = './Json'
-        this.heroDataPath = './Json/heroData.txt'
+    constructor() {        
+        let instance = ipcRenderer.sendSync('get_single_instance', this.constructor.name)
+        if (!instance) {
+            this.isInit = false
 
-        this.addCommand = null
-        this.heroTable = []
+            this.dataPath = './Json'
+            this.heroDataPath = './Json/heroData.txt'
+    
+            this.addCommand = null
+            this.heroTable = []
+            
+            instance = this
+        }
+
+        let prototypeInstance = Object.setPrototypeOf(instance, JsonManager.prototype)
+        return prototypeInstance
     }
-
+    
     init(callback) {
-        this.initProcess(this.heroDataPath, (readTable) => {
-            this.heroTable = readTable
+        if (!this.isInit) {            
+            this.isInit = true
 
-            if (callback != null)
-                callback()
-        })
+            this.initJsonProcess(this.heroDataPath, (readTable) => {
+                this.heroTable = readTable
+
+                if (callback != null)
+                    callback()
+            })
+        }
+
     }
 
-    initProcess(path, callback) {
+    initJsonProcess(path, callback) {
         this.checkJson(path, () =>
             this.readJson(path, callback))
     }
@@ -42,20 +60,38 @@ class JsonManager {
         catch (e) {
             if (e.code != 'EEXIST') throw e; // 존재할경우 패스처리함. 
         }
-        finally{
+        finally {
             fs.exists(path, (isExists) => {
 
                 if (!isExists) {
-    
-                    let table = []
-                    fs.writeFile(path, JSON.stringify(table, null, 4), 'utf8', callback)
+                    let options = {
+                        headers: {
+                            'User-Agent': 'epic_simulator',
+                            'Accept': 'application/vnd.github.v3+json',
+                            'Authorization': 'token 945aec0ab3f9d3bb242a3d6d5505bde66132a726'
+                        },
+                        method: 'GET',
+                        protocol: 'https:',
+                        hostname: 'api.github.com',
+                        path: '/repos/SiLuYot/my_epic_simulator/contents/Json/heroData.txt'
+                    }
+
+                    ipcRenderer.send('req_heroData', options)
+                    ipcRenderer.on('res_heroData', (event, arg) => {
+                        let decodeContent = decodeURIComponent(escape(atob(arg.content)))
+                        let decodeJson = JSON.parse(decodeContent)
+                        console.log(decodeJson);
+
+                        fs.writeFile(path, JSON.stringify(decodeJson, null, 4), 'utf8', callback)
+                    })
+
                 }
                 else {
                     callback()
                 }
-    
+
             })
-        }        
+        }
     }
 
     readJson(path, callback) {
@@ -90,10 +126,12 @@ class JsonManager {
             }
         })
     }
+
+    updateJsonManager(){
+        ipcRenderer.send('update_single_instance', [this, this.constructor.name])
+    }
 }
 
-const instance = new JsonManager()
-
 module.exports = {
-    instance: instance
+    instance: new JsonManager(),
 }
