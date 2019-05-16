@@ -1,7 +1,7 @@
-const hero = require('../Data/hero')
-const skill = require('../Data/skill')
-const command = require('../Command/command')
-const jsonInstance = require('../Manager/jsonManager').instance
+const hero = require('../data/hero')
+const skill = require('../data/skill')
+const command = require('../command/command')
+const jsonInstance = require('../manager/jsonManager').instance
 
 const skillKindTable = [
     new skill.SkillAttribute('none'),

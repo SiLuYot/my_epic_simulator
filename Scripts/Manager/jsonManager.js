@@ -1,29 +1,29 @@
 'use strict'
 
-const { ipcRenderer } = require('electron')
+const { ipcRenderer, remote } = require('electron')
 const fs = require('fs')
 
 class JsonManager {
-    constructor() {        
+    constructor() {
         let instance = ipcRenderer.sendSync('get_single_instance', this.constructor.name)
         if (!instance) {
             this.isInit = false
 
             this.dataPath = './Json'
             this.heroDataPath = './Json/heroData.txt'
-    
+
             this.addCommand = null
             this.heroTable = []
-            
+
             instance = this
         }
 
         let prototypeInstance = Object.setPrototypeOf(instance, JsonManager.prototype)
         return prototypeInstance
     }
-    
+
     init(callback) {
-        if (!this.isInit) {            
+        if (!this.isInit) {
             this.isInit = true
 
             this.initJsonProcess(this.heroDataPath, (readTable) => {
@@ -55,43 +55,42 @@ class JsonManager {
 
     checkJson(path, callback) {
         try {
-            fs.mkdirSync(this.dataPath);
-        }
-        catch (e) {
-            if (e.code != 'EEXIST') throw e; // 존재할경우 패스처리함. 
-        }
-        finally {
-            fs.exists(path, (isExists) => {
-
+            fs.exists(this.dataPath, (isExists) => {
                 if (!isExists) {
-                    let options = {
-                        headers: {
-                            'User-Agent': 'epic_simulator',
-                            'Accept': 'application/vnd.github.v3+json',
-                            'Authorization': 'token 945aec0ab3f9d3bb242a3d6d5505bde66132a726'
-                        },
-                        method: 'GET',
-                        protocol: 'https:',
-                        hostname: 'api.github.com',
-                        path: '/repos/SiLuYot/my_epic_simulator/contents/Json/heroData.txt'
+                    //폴더가 없으면 만든다.
+                    fs.mkdirSync(this.dataPath)
+                }
+
+                fs.exists(path, (isExists) => {
+
+                    if (!isExists) {
+                        //파일이 없으면 다운로드
+                        this.downloadJson(path, callback)
                     }
-
-                    ipcRenderer.send('req_heroData', options)
-                    ipcRenderer.on('res_heroData', (event, arg) => {
-                        let decodeContent = decodeURIComponent(escape(atob(arg.content)))
-                        let decodeJson = JSON.parse(decodeContent)
-                        console.log(decodeJson);
-
-                        fs.writeFile(path, JSON.stringify(decodeJson, null, 4), 'utf8', callback)
-                    })
-
-                }
-                else {
-                    callback()
-                }
-
+                    else {
+                        callback()
+                    }
+    
+                })
             })
         }
+        catch (e) {
+            if (e.code != 'EEXIST'){
+                throw e
+            }                
+        }
+    }
+
+    downloadJson(path, callback){
+        ipcRenderer.send('req_heroData')
+
+        ipcRenderer.on('res_heroData', (event, arg) => {
+            let decodeContent = decodeURIComponent(escape(atob(arg.content)))
+            let decodeJson = JSON.parse(decodeContent)
+            console.log(decodeJson);
+
+            fs.writeFile(path, JSON.stringify(decodeJson, null, 4), 'utf8', callback)
+        })
     }
 
     readJson(path, callback) {
@@ -127,11 +126,11 @@ class JsonManager {
         })
     }
 
-    updateJsonManager(){
+    updateJsonManager() {
         ipcRenderer.send('update_single_instance', [this, this.constructor.name])
     }
 }
 
 module.exports = {
-    instance: new JsonManager(),
+    instance: new JsonManager()
 }

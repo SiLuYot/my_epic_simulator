@@ -1,5 +1,3 @@
-const Skill = require('./skill')
-
 //json 데이터
 class HeroData{
     constructor(name, element, 

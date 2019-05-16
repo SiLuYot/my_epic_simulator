@@ -85,7 +85,7 @@
                 "soulBunAttackRate": 0,
                 "skillAttribute": {
                     "name": "none"
-            }
+                }
             }
         ]
     },
@@ -115,7 +115,7 @@
                 "soulBunAttackRate": 0,
                 "skillAttribute": {
                     "name": "none"
-            }
+                }
             }
         ]
     }

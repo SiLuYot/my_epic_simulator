@@ -1,5 +1,5 @@
 const { shell, ipcRenderer } = require('electron')
-const jsonManager = require('./Manager/jsonManager')
+const jsonManager = require('./manager/jsonManager')
 
 window.onload = () => {
     initJsonManager()

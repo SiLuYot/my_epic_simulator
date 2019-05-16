@@ -1,4 +1,4 @@
-const jsonInstance = require('../Manager/jsonManager').instance
+const jsonInstance = require('../manager/jsonManager').instance
 
 class Command{
     execute(){

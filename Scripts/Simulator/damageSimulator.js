@@ -1,9 +1,9 @@
-const hero = require('../Data/hero')
-const element = require('../Data/element')
-const enemy = require('../Data/enemy')
-const skill = require('../Data/skill')
+const hero = require('../data/hero')
+const element = require('../data/element')
+const enemy = require('../data/enemy')
+const skill = require('../data/skill')
 
-const jsonInstance = require('../Manager/jsonManager').instance
+const jsonInstance = require('../manager/jsonManager').instance
 
 window.onload = () => {
     initHeroList()
