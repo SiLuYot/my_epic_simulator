@@ -1,3 +1,5 @@
+'use strict'
+
 //json 데이터
 class HeroData{
     constructor(name, element, 

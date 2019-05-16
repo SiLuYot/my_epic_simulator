@@ -1,6 +1,8 @@
+'use strict'
+
 class Element {
-    constructor(element) {
-        this.element = element
+    constructor(name) {
+        this.name = name
     }
     isAdvantageElement(extendElement) {
         throw new Error('isAdvantageElement() must be implement.');
@@ -13,7 +15,7 @@ class FireElement extends Element {
     }
     isAdvantageElement(extendElement) {
         //불속성은 자연속성에 유리
-        return extendElement.element === 'Earth';
+        return extendElement.name === 'Earth';
     }
 }
 
@@ -23,7 +25,7 @@ class IceElement extends Element {
     }
     isAdvantageElement(extendElement) {
         //얼음속성은 불속성에 유리
-        return extendElement.element === 'Fire';
+        return extendElement.name === 'Fire';
     }
 }
 
@@ -33,7 +35,7 @@ class EarthElement extends Element {
     }
     isAdvantageElement(extendElement) {
         //자연속성은 물속성에 유리
-        return extendElement.element === 'Ice';
+        return extendElement.name === 'Ice';
     }
 }
 
@@ -43,7 +45,7 @@ class LightElement extends Element {
     }
     isAdvantageElement(extendElement) {
         //빛속성은 어둠속성에 유리
-        return extendElement.element === 'Dark';
+        return extendElement.name === 'Dark';
     }
 }
 
@@ -53,32 +55,18 @@ class DarkElement extends Element {
     }
     isAdvantageElement(extendElement) {
         //어둠속성은 빛속성에 유리
-        return extendElement.element === 'Light';
+        return extendElement.name === 'Light';
     }
 }
 
-function indexToElement(index) {
+const ElementTable = [
+    new FireElement(),
+    new IceElement(),
+    new EarthElement(),
+    new LightElement(),
+    new DarkElement()
+]
 
-    switch (Number(index)) {
-        case 0:
-            return new FireElement()
-        case 1:
-            return new IceElement()
-        case 2:
-            return new EarthElement()
-        case 3:
-            return new LightElement()
-        case 4:
-            return new DarkElement()
-    }
-}
-
-module.exports = {
-    Element: Element,
-    FireElement: FireElement,
-    IceElement: IceElement,
-    EarthElement: EarthElement,
-    LightElement: LightElement,
-    DarkElement: DarkElement,
-    IndexToElement: indexToElement,
+module.exports = {    
+    ElementTable: ElementTable,
 }

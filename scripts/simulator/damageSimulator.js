@@ -1,7 +1,8 @@
+'use strict'
+
 const hero = require('../data/hero')
 const element = require('../data/element')
 const enemy = require('../data/enemy')
-const skill = require('../data/skill')
 
 const jsonInstance = require('../manager/jsonManager').instance
 
@@ -13,7 +14,7 @@ function initHeroList() {
     let heroList = document.getElementById("heroList")
     let heroTable = jsonInstance.heroTable
 
-    for (i = 0; i < heroTable.length; i++) {
+    for (let i = 0; i < heroTable.length; i++) {
         let op = new Option()
         op.value = i
         op.text = heroTable[i].name
@@ -22,15 +23,14 @@ function initHeroList() {
     }
 }
 
-function getNumerator(heroSkill, hero, attackRate, skillMult, elementMult){
+function getNumerator(heroSkill, hero, attackRate, skillMult, elementMult) {
     const fixedConst = 1.871
 
     let atkTotal = hero.attack
     let powerTotal = fixedConst * heroSkill.pow
     let multTotal = skillMult * elementMult * powerTotal
-
-    let skillAttribute = new skill.SkillAttribute(heroSkill.skillAttribute)
-    let numerator = skillAttribute.getAdditionMult(hero, atkTotal, attackRate) * multTotal
+    
+    let numerator = heroSkill.getAdditionMult(hero, atkTotal, attackRate) * multTotal
     return numerator
 }
 
@@ -62,53 +62,105 @@ function getDamageResult(numerator, denominator, criticalDmg, criticalMult, tota
     return msg;
 }
 
-function calculateDamage(hero, enemy, useSkillIndex, skillMultValue) {
+function getAtkMult(){
     let atkUp = document.getElementById("atkUp").checked
     let atkGreateUp = document.getElementById("atkGreateUp").checked
+    let value = 1.0
+
+    if(atkGreateUp){
+        value = 1.75 
+    }
+    else if(atkUp){
+        value = 1.5
+    }
+    return value
+}
+
+function getSpeedMult(){
     let speedUp = document.getElementById("speedUp").checked
     let speedGreateUp = document.getElementById("speedGreateUp").checked
-    let defUp = document.getElementById("defUp").checked
-    let criticalDmgUp = document.getElementById("criticalDmgUp").checked
+    let value = 1.0
 
-    let defDown = document.getElementById("defDown").checked
+    if(speedGreateUp){
+        value = 1.45 
+    }
+    else if(speedUp){
+        value = 1.3
+    }
+    return value
+}
+
+function getDefMult(){
+    let defUp = document.getElementById("defUp").checked
+    let value = 1.0
+
+    if(defUp){
+        value = 1.6 
+    }
+    return value
+}
+
+function getcriticalDmgMult(){
+    let criticalDmgUp = document.getElementById("criticalDmgUp").checked
+    let value = 1.0
+
+    if(criticalDmgUp){
+        value = 1.5
+    }
+    return value
+}
+
+function getTargetMult(){
     let target = document.getElementById("target").checked
+    let value = 1.0
+
+    if(target){
+        value = 1.15
+    }
+    return value
+}
+
+function getSkillMult(skillMultValue){
+    return skillMultValue * 0.01 + 1
+}
+
+function getElementMult(heroElement, enemyElement){
+    let isAdvantage = heroElement.isAdvantageElement(enemyElement)
+    return isAdvantage ? 1.1 : 1
+}
+
+function getEnemyDefMult(){
+    let defDown = document.getElementById("defDown").checked
+    let value = 1.0
+
+    if(defDown){
+        value = 0.3
+    }
+    return value
+}
+
+function calculateDamage(hero, enemy, useSkillIndex, skillMultValue) {
+    hero.attack *= getAtkMult()
+    hero.speed *= getSpeedMult()
+    hero.def *= getDefMult()    
 
     let heroSkill = hero.skillArray[useSkillIndex]
 
-    let atkMult = atkUp ? 1.5 : 1.0
-    atkMult = atkGreateUp ? 1.75 : atkMult
-
-    let speedMult = speedUp ? 1.3 : 1.0
-    speedMult = speedGreateUp ? 1.45 : speedMult
-
-    let defMult = defUp ? 1.6 : 1.0
-    
-    let skillMult = skillMultValue * 0.01 + 1
-    let criticalMult = criticalDmgUp ? 1.5 : 1.0
-    let elementMult = hero.element.isAdvantageElement(enemy.element) ? 1.1 : 1
-    let totalMult = target ? 1.15 : 1.0
-    
-    let enemyDefMult = defDown ? 0.3 : 1.0
-
-    hero.attack *= atkMult
-    hero.speed *= speedMult
-    hero.def *= defMult    
-
     let numerator = getNumerator(heroSkill, hero, heroSkill.attackRate,
-        skillMult, elementMult)        
-    let denominator = getDenominator(enemy.def, enemyDefMult)
+        getSkillMult(skillMultValue), getElementMult(hero.element, enemy.element))        
+    let denominator = getDenominator(enemy.def, getEnemyDefMult())
 
     let msg = `
     Skill Index     :   ${useSkillIndex + 1}`
-    msg += getDamageResult(numerator, denominator, hero.criticalDmg, criticalMult, totalMult)
+    msg += getDamageResult(numerator, denominator, hero.criticalDmg, getcriticalDmgMult(), getTargetMult())
 
     if (heroSkill.soulBunAttackRate !== 0) {
         let numerator = getNumerator(heroSkill, hero, heroSkill.soulBunAttackRate,
-            skillMult, elementMult)           
-        let denominator = getDenominator(enemy.def, enemyDefMult)
+            getSkillMult(skillMultValue), getElementMult(hero.element, enemy.element))           
+        let denominator = getDenominator(enemy.def, getEnemyDefMult())
     
         msg += '\n    SoulBurn'
-        msg += getDamageResult(numerator, denominator, hero.criticalDmg, criticalMult, totalMult)
+        msg += getDamageResult(numerator, denominator, hero.criticalDmg, getcriticalDmgMult(), getTargetMult())
     }
 
     msg += '----------------'
@@ -118,22 +170,26 @@ function calculateDamage(hero, enemy, useSkillIndex, skillMultValue) {
 
 document.getElementById('simulate').onclick = () => {
     let heroList = document.getElementById("heroList")
+
     let attackValue = document.getElementById("attack_value").value
     let criticalValue = document.getElementById("critical_value").value
     let skillMultValue1 = document.getElementById("skillMult_value1").value
     let skillMultValue2 = document.getElementById("skillMult_value2").value
     let skillMultValue3 = document.getElementById("skillMult_value3").value
+
     let speedValue = document.getElementById("speed_value").value
     let defValue = document.getElementById("def_value").value
     let hpValue = document.getElementById("hp_value").value
+
     let enemyElementValue = document.getElementById("enemy_element").value
     let enemyDefValue = document.getElementById("enemy_def").value
+    
+    let heroTableData = jsonInstance.getRefinedHeroData(heroList.selectedIndex)
+    let heroElement = element.ElementTable[heroTableData.element]
+    let enemyElement = element.ElementTable[enemyElementValue]
 
-    let index = heroList.selectedIndex
-    let heroTableData = jsonInstance.heroTable[index]
-
-    let heroData = new hero.BaseHero(attackValue, criticalValue, speedValue, defValue, hpValue, element.IndexToElement(heroTableData.element), heroTableData.skillArray)
-    let enemyData = new enemy.BaseEnemy(enemyDefValue, element.IndexToElement(enemyElementValue))
+    let heroData = new hero.BaseHero(attackValue, criticalValue, speedValue, defValue, hpValue, heroElement, heroTableData.skillArray)
+    let enemyData = new enemy.BaseEnemy(enemyDefValue, enemyElement)
 
     let msg =
         calculateDamage(heroData, enemyData, 0, skillMultValue1) +

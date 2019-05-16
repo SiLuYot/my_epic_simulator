@@ -1,3 +1,5 @@
+'use strict'
+
 const jsonInstance = require('../manager/jsonManager').instance
 
 class Command{

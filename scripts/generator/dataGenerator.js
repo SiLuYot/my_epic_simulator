@@ -1,30 +1,28 @@
+'use strict'
+
 const hero = require('../data/hero')
 const skill = require('../data/skill')
+const element = require('../data/element')
 const command = require('../command/command')
 const jsonInstance = require('../manager/jsonManager').instance
 
-const skillKindTable = [
-    new skill.SkillAttribute('none'),
-    new skill.SelfSpeedSkill(),
-    new skill.SelfDefSkill(),
-    new skill.SelfMaxHPSkill(),
-]
-
-window.onload = () => {    
+window.onload = () => {
+    let element_kind = document.getElementById("element")
     let skill_kind1 = document.getElementById("skill_kind1")
     let skill_kind2 = document.getElementById("skill_kind2")
     let skill_kind3 = document.getElementById("skill_kind3")
 
-    initSkillKindOption(skill_kind1.options)
-    initSkillKindOption(skill_kind2.options)
-    initSkillKindOption(skill_kind3.options)
+    initOptionTable(element_kind.options, element.ElementTable)
+    initOptionTable(skill_kind1.options, skill.SkillKindTable)
+    initOptionTable(skill_kind2.options, skill.SkillKindTable)
+    initOptionTable(skill_kind3.options, skill.SkillKindTable)
 }
 
-function initSkillKindOption(options){
-    for (i = 0; i < skillKindTable.length; i++) {
+function initOptionTable(options, table){
+    for (let i = 0; i < table.length; i++) {
         let op = new Option()
         op.value = i
-        op.text = skillKindTable[i].name
+        op.text = table[i].name
 
         options.add(op)
     }
@@ -45,31 +43,27 @@ function GetNewHeroData() {
     let name = document.getElementById('name').value
     let element = document.getElementById('element').value
 
-    let att_rate_1 = document.getElementById('att_rate_1').value
-    let pow_1 = document.getElementById('pow_1').value
-    let soul_burn_1 = document.getElementById('soul_burn_1').value
-    let skill_kind1 = document.getElementById("skill_kind1").value
-    let kind_rate_1 = document.getElementById("kind_rate_1").value
+    let att_rate_1  = Number(document.getElementById('att_rate_1').value)
+    let pow_1       = Number(document.getElementById('pow_1').value)
+    let soul_burn_1 = Number(document.getElementById('soul_burn_1').value)
+    let skill_kind1 = Number(document.getElementById("skill_kind1").value)
+    let kind_rate_1 = Number(document.getElementById("kind_rate_1").value)
 
-    let att_rate_2 = document.getElementById('att_rate_2').value
-    let pow_2 = document.getElementById('pow_2').value
-    let soul_burn_2 = document.getElementById('soul_burn_2').value
-    let skill_kind2 = document.getElementById("skill_kind2").value
-    let kind_rate_2 = document.getElementById("kind_rate_2").value
+    let att_rate_2  = Number(document.getElementById('att_rate_2').value)
+    let pow_2       = Number(document.getElementById('pow_2').value)
+    let soul_burn_2 = Number(document.getElementById('soul_burn_2').value)
+    let skill_kind2 = Number(document.getElementById("skill_kind2").value)
+    let kind_rate_2 = Number(document.getElementById("kind_rate_2").value)
 
-    let att_rate_3 = document.getElementById('att_rate_3').value
-    let pow_3 = document.getElementById('pow_3').value
-    let soul_burn_3 = document.getElementById('soul_burn_3').value
-    let skill_kind3 = document.getElementById("skill_kind3").value
-    let kind_rate_3 = document.getElementById("kind_rate_3").value
+    let att_rate_3  = Number(document.getElementById('att_rate_3').value)
+    let pow_3       = Number(document.getElementById('pow_3').value)
+    let soul_burn_3 = Number(document.getElementById('soul_burn_3').value)
+    let skill_kind3 = Number(document.getElementById("skill_kind3").value)
+    let kind_rate_3 = Number(document.getElementById("kind_rate_3").value)
 
-    let skillKindIndex1 = skillKindTable[skill_kind1]
-    let skillKindIndex2 = skillKindTable[skill_kind2]
-    let skillKindIndex3 = skillKindTable[skill_kind3]
-
-    let skill1 = new skill.BaseSkill(Number(att_rate_1), Number(pow_1), Number(kind_rate_1), Number(soul_burn_1),  skillKindIndex1)
-    let skill2 = new skill.BaseSkill(Number(att_rate_2), Number(pow_2), Number(kind_rate_2), Number(soul_burn_2),  skillKindIndex2)
-    let skill3 = new skill.BaseSkill(Number(att_rate_3), Number(pow_3), Number(kind_rate_3), Number(soul_burn_3),  skillKindIndex3)
+    let skill1 = new skill.BaseSkill(att_rate_1, pow_1, kind_rate_1, soul_burn_1,  skill_kind1)
+    let skill2 = new skill.BaseSkill(att_rate_2, pow_2, kind_rate_2, soul_burn_2,  skill_kind2)
+    let skill3 = new skill.BaseSkill(att_rate_3, pow_3, kind_rate_3, soul_burn_3,  skill_kind3)
 
     let newHero = new hero.HeroData(name, element, skill1, skill2, skill3)
 

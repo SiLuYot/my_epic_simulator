@@ -1,3 +1,5 @@
+'use strict'
+
 const { shell, ipcRenderer } = require('electron')
 const jsonManager = require('./manager/jsonManager')
 

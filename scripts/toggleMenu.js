@@ -1,3 +1,5 @@
+'use strict'
+
 const { remote } = require('electron')
 
 window.$ = window.jQuery = require('../echoes/js/jquery.js')

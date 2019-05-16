@@ -1,7 +1,8 @@
 'use strict'
 
-const { ipcRenderer, remote } = require('electron')
+const { ipcRenderer } = require('electron')
 const fs = require('fs')
+const skill = require('../data/skill')
 
 class JsonManager {
     constructor() {
@@ -16,10 +17,8 @@ class JsonManager {
             this.heroTable = []
 
             instance = this
-        }
-
-        let prototypeInstance = Object.setPrototypeOf(instance, JsonManager.prototype)
-        return prototypeInstance
+        }                        
+        return Object.setPrototypeOf(instance, JsonManager.prototype)
     }
 
     init(callback) {
@@ -128,6 +127,18 @@ class JsonManager {
 
     updateJsonManager() {
         ipcRenderer.send('update_single_instance', [this, this.constructor.name])
+    }
+
+    getRefinedHeroData(index){
+        let heroTableData = this.heroTable[index]
+
+        for (let i in heroTableData.skillArray) {
+            let skillData = heroTableData.skillArray[i]
+            skillData = Object.setPrototypeOf(skillData, skill.BaseSkill.prototype)
+            heroTableData.skillArray[i] = skillData
+        }
+
+        return heroTableData
     }
 }
 

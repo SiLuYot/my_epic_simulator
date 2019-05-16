@@ -1,19 +1,25 @@
+'use strict'
+
 class BaseSkill {
-    constructor(attackRate, pow, additionRate, soulBunAttackRate, skillAttribute) {
+    constructor(attackRate, pow, additionRate, soulBunAttackRate, attributeIndex) {
         this.attackRate = attackRate
         this.pow = pow
-        this.additionRate = additionRate
+        this.additionRate = additionRate * 0.01
         this.soulBunAttackRate = soulBunAttackRate
-        this.skillAttribute = skillAttribute
+        this.attributeIndex = attributeIndex
+    }
+
+    getAdditionMult(hero, atkTotal, attackRate){
+        return skillKindTable[this.attributeIndex].getAdditionMult(hero, atkTotal, attackRate, this.additionRate)        
     }
 }
 
 class SkillAttribute {
-    constructor(name) {
+    constructor(name = 'none') {        
         this.name = name
     }
 
-    getAdditionMult(hero, atkTotal, attackRate) {
+    getAdditionMult(hero, atkTotal, attackRate, additionRate) {
         return atkTotal * attackRate
     }
 }
@@ -24,7 +30,7 @@ class SelfSpeedSkill extends SkillAttribute {
         super('속도 비례')
     }
 
-    getAdditionMult(hero, atkTotal, attackRate) {
+    getAdditionMult(hero, atkTotal, attackRate, additionRate) {
         return (atkTotal * attackRate) * (1 + hero.speed * additionRate)
     }
 }
@@ -35,7 +41,7 @@ class SelfDefSkill extends SkillAttribute {
         super('방어 비례')
     }
 
-    getAdditionMult(hero, atkTotal, attackRate) {
+    getAdditionMult(hero, atkTotal, attackRate, additionRate) {
         return (atkTotal * attackRate) + (hero.def * additionRate)
     }
 }
@@ -46,7 +52,7 @@ class SelfMaxHPSkill extends SkillAttribute {
         super('최대 체력 비례')
     }
 
-    getAdditionMult(hero, atkTotal, attackRate) {
+    getAdditionMult(hero, atkTotal, attackRate, additionRate) {
         return (atkTotal * attackRate) + (hero.hp * additionRate)
     }
 }
@@ -111,10 +117,14 @@ class IsTargetDeadSkill extends SkillAttribute {
 
 }
 
+const skillKindTable = [
+    new SkillAttribute(),
+    new SelfSpeedSkill(),
+    new SelfDefSkill(),
+    new SelfMaxHPSkill(),
+]
+
 module.exports = {
     BaseSkill: BaseSkill,
-    SkillAttribute: SkillAttribute,
-    SelfSpeedSkill: SelfSpeedSkill,
-    SelfDefSkill: SelfDefSkill,
-    SelfMaxHPSkill: SelfMaxHPSkill,
+    SkillKindTable: skillKindTable,
 }

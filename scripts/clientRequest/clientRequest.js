@@ -1,3 +1,5 @@
+'use strict'
+
 const { ipcMain, net } = require('electron')
 const config = require('../config')
 
@@ -10,13 +12,13 @@ const baseOptions = {
     method: 'GET',
     protocol: 'https:',
     hostname: 'api.github.com',
-    path: '/repos/SiLuYot/my_epic_simulator/contents/json/heroData.txt'
+    path: '/'
 }
 
 ipcMain.on('req_heroData', (event, arg) => {
 
     baseOptions.method = 'GET'
-    baseOptions.path = '/repos/SiLuYot/my_epic_simulator/contents/json/heroData.txt'
+    baseOptions.path = '/repos/SiLuYot/my_epic_simulator_db/contents/heroData.txt'
 
     baseRequest(baseOptions, (body) => {
         event.sender.send('res_heroData', body);
