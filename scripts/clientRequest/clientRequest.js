@@ -10,13 +10,13 @@ const baseOptions = {
     method: 'GET',
     protocol: 'https:',
     hostname: 'api.github.com',
-    path: '/repos/SiLuYot/my_epic_simulator/contents/Json/heroData.txt'
+    path: '/repos/SiLuYot/my_epic_simulator/contents/json/heroData.txt'
 }
 
 ipcMain.on('req_heroData', (event, arg) => {
 
     baseOptions.method = 'GET'
-    baseOptions.path = '/repos/SiLuYot/my_epic_simulator/contents/Json/heroData.txt'
+    baseOptions.path = '/repos/SiLuYot/my_epic_simulator/contents/json/heroData.txt'
 
     baseRequest(baseOptions, (body) => {
         event.sender.send('res_heroData', body);
