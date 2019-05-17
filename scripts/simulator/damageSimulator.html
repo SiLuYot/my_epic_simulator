@@ -69,7 +69,7 @@
             <input type="number" id="def_value" placeholder="필요한 경우만 입력"><br>
         </p>
 
-        <strong>방어력</strong>
+        <strong>체력</strong>
         <p>
             <input type="number" id="hp_value" placeholder="필요한 경우만 입력"><br>
         </p>
@@ -79,15 +79,12 @@
             <label><input id="atkUp" type="checkbox" value="">공격력 증가 (+50%)</label><br>
             <label><input id="atkGreateUp" type="checkbox" value="">공격력 증가 대 (+75%)</label><br>
 
-            <div style="display:none">
-                <label><input id="speedUp" type="checkbox" value="">속도 증가 (+30%)</label><br>
-                <label><input id="speedGreateUp" type="checkbox" value="">속도 증가 대 (+45%)</label><br>
+            <label><input id="speedUp" type="checkbox" value="">속도 증가 (+30%)</label><br>
+            <label><input id="speedGreateUp" type="checkbox" value="">속도 증가 대 (+45%)</label><br>
 
-                <label><input id="defUp" type="checkbox" value="">방어력 증가 (+60%)</label><br>
+            <label><input id="defUp" type="checkbox" value="">방어력 증가 (+60%)</label><br>
 
-                <label><input id="criticalDmgUp" type="checkbox" value="">치명피해 증가 (+50%)</label><br>
-            </div>
-
+            <label><input id="criticalDmgUp" type="checkbox" value="">치명피해 증가 (+50%)</label><br>
         </p>
 
     </div>
@@ -97,11 +94,6 @@
         <strong>속성</strong>
         <p>
             <select id="enemy_element" style="height: 25px;">
-                <option value="0">불</option>
-                <option value="1">얼음</option>
-                <option value="2" selected="selected">자연</option>
-                <option value="3">빛</option>
-                <option value="4">어둠</option>
             </select>
         </p>
 
@@ -121,9 +113,9 @@
         <strong>결과 (소수점 3자리까지. 이후 반올림)</strong><br>
         <textarea id="result" cols="50" rows="16"></textarea><br>
     </div>
-    <div style="position: fixed; height: 50px; bottom: 0; width: 100%; padding: 10px;">
+    <div style="position: fixed; height: 50px; bottom: 0; width: 100%; padding: 10px; pointer-events:none;">
         <div style="float: right;">
-            <input type="button" id="simulate" value="Go!" style="width:200px;">
+            <input type="button" id="simulate" value="Go!" style="width:200px; pointer-events:auto;">
         </div>
     </div>
 </body>

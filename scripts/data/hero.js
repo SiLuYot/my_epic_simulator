@@ -21,6 +21,10 @@ class BaseHero {
         this.def = def
         this.element = element
         this.skillArray = skillArray
+
+        this.attackMult = 1.0
+        this.speedMult = 1.0
+        this.defMult = 1.0
     }
 }
 

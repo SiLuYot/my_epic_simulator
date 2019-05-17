@@ -34,7 +34,7 @@ document.getElementById('create').onclick = () => {
     //json 미리보기에 표시
     document.getElementById('result').value = JSON.stringify(newHero, null, 4)
     //커맨드 변경
-    jsonInstance.setAddCommand(new command.HeroAddCommand())
+    jsonInstance.changeAddCommand(new command.HeroAddCommand())
     //추가 실행
     jsonInstance.addProcess(newHero)
 }

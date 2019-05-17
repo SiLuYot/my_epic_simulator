@@ -9,8 +9,8 @@ class BaseSkill {
         this.attributeIndex = attributeIndex
     }
 
-    getAdditionMult(hero, atkTotal, attackRate){
-        return skillKindTable[this.attributeIndex].getAdditionMult(hero, atkTotal, attackRate, this.additionRate)        
+    getAdditionMult(hero, attackRate){
+        return skillKindTable[this.attributeIndex].getAdditionMult(hero, attackRate, this.additionRate)        
     }
 }
 
@@ -19,8 +19,8 @@ class SkillAttribute {
         this.name = name
     }
 
-    getAdditionMult(hero, atkTotal, attackRate, additionRate) {
-        return atkTotal * attackRate
+    getAdditionMult(hero, attackRate, additionRate) {
+        return hero.attack * hero.attackMult * attackRate
     }
 }
 
@@ -30,8 +30,9 @@ class SelfSpeedSkill extends SkillAttribute {
         super('속도 비례')
     }
 
-    getAdditionMult(hero, atkTotal, attackRate, additionRate) {
-        return (atkTotal * attackRate) * (1 + hero.speed * additionRate)
+    getAdditionMult(hero, attackRate, additionRate) {
+        return (hero.attack * hero.attackMult * attackRate) * 
+        (1 + hero.speed * hero.speedMult * additionRate)
     }
 }
 
@@ -41,8 +42,9 @@ class SelfDefSkill extends SkillAttribute {
         super('방어 비례')
     }
 
-    getAdditionMult(hero, atkTotal, attackRate, additionRate) {
-        return (atkTotal * attackRate) + (hero.def * additionRate)
+    getAdditionMult(hero, attackRate, additionRate) {
+        return (hero.attack * hero.attackMult * attackRate) + 
+        (hero.def * hero.defMult * additionRate)
     }
 }
 

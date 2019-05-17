@@ -10,14 +10,14 @@ class JsonManager {
         if (!instance) {
             this.isInit = false
 
-            this.dataPath = './Json'
-            this.heroDataPath = './Json/heroData.txt'
+            this.dataPath = './json'
+            this.heroDataPath = './json/heroData.txt'
 
             this.addCommand = null
             this.heroTable = []
 
             instance = this
-        }                        
+        }
         return Object.setPrototypeOf(instance, JsonManager.prototype)
     }
 
@@ -40,7 +40,7 @@ class JsonManager {
             this.readJson(path, callback))
     }
 
-    setAddCommand(command) {
+    changeAddCommand(command) {
         this.addCommand = command
     }
 
@@ -69,18 +69,18 @@ class JsonManager {
                     else {
                         callback()
                     }
-    
+
                 })
             })
         }
         catch (e) {
-            if (e.code != 'EEXIST'){
+            if (e.code != 'EEXIST') {
                 throw e
-            }                
+            }
         }
     }
 
-    downloadJson(path, callback){
+    downloadJson(path, callback) {
         ipcRenderer.send('req_heroData')
 
         ipcRenderer.on('res_heroData', (event, arg) => {
@@ -129,7 +129,7 @@ class JsonManager {
         ipcRenderer.send('update_single_instance', [this, this.constructor.name])
     }
 
-    getRefinedHeroData(index){
+    getRefinedHeroData(index) {
         let heroTableData = this.heroTable[index]
 
         for (let i in heroTableData.skillArray) {
@@ -143,5 +143,5 @@ class JsonManager {
 }
 
 module.exports = {
-    instance: new JsonManager()
+    instance: new JsonManager(),
 }

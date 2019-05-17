@@ -25,5 +25,86 @@
                 "soulBunAttackRate": 2.2
             }
         ]
+    },
+    {
+        "element": "3",
+        "name": "test",
+        "skillArray": [
+            {
+                "additionRate": 0.01,
+                "attackRate": 1,
+                "attributeIndex": 1,
+                "pow": 1,
+                "soulBunAttackRate": 2
+            },
+            {
+                "additionRate": 0.01,
+                "attackRate": 1,
+                "attributeIndex": 2,
+                "pow": 1,
+                "soulBunAttackRate": 2
+            },
+            {
+                "additionRate": 0.01,
+                "attackRate": 1,
+                "attributeIndex": 3,
+                "pow": 1,
+                "soulBunAttackRate": 2
+            }
+        ]
+    },
+    {
+        "element": "0",
+        "name": "체르미아",
+        "skillArray": [
+            {
+                "additionRate": 0,
+                "attackRate": 1.2,
+                "attributeIndex": 0,
+                "pow": 1,
+                "soulBunAttackRate": 0
+            },
+            {
+                "additionRate": 0,
+                "attackRate": 0,
+                "attributeIndex": 0,
+                "pow": 0,
+                "soulBunAttackRate": 0
+            },
+            {
+                "additionRate": 0,
+                "attackRate": 1.15,
+                "attributeIndex": 0,
+                "pow": 0.9,
+                "soulBunAttackRate": 1.65
+            }
+        ]
+    },
+    {
+        "name": "암살자 콜리",
+        "element": "4",
+        "skillArray": [
+            {
+                "attackRate": 0.8,
+                "pow": 1,
+                "additionRate": 0.00075,
+                "soulBunAttackRate": 0,
+                "attributeIndex": 1
+            },
+            {
+                "attackRate": 0,
+                "pow": 0,
+                "additionRate": 0,
+                "soulBunAttackRate": 0,
+                "attributeIndex": 0
+            },
+            {
+                "attackRate": 1.5,
+                "pow": 0.8,
+                "additionRate": 0.0011250000000000001,
+                "soulBunAttackRate": 3,
+                "attributeIndex": 1
+            }
+        ]
     }
 ]

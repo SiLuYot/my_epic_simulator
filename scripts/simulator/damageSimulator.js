@@ -8,6 +8,7 @@ const jsonInstance = require('../manager/jsonManager').instance
 
 window.onload = () => {
     initHeroList()
+    initEnemyElementTable()
 }
 
 function initHeroList() {
@@ -23,25 +24,38 @@ function initHeroList() {
     }
 }
 
+function initEnemyElementTable() {
+    let element_kind = document.getElementById("enemy_element")
+    for (let i = 0; i < element.ElementTable.length; i++) {
+        let op = new Option()
+        op.value = i
+        op.text = element.ElementTable[i].name
+
+        if (i === 2)    //기본값 자연속성
+            op.selected = 'selected'
+
+        element_kind.add(op)
+    }
+}
+
 function getNumerator(heroSkill, hero, attackRate, skillMult, elementMult) {
     const fixedConst = 1.871
 
-    let atkTotal = hero.attack
     let powerTotal = fixedConst * heroSkill.pow
     let multTotal = skillMult * elementMult * powerTotal
-    
-    let numerator = heroSkill.getAdditionMult(hero, atkTotal, attackRate) * multTotal
+
+    let numerator = heroSkill.getAdditionMult(hero, attackRate) * multTotal
     return numerator
 }
 
-function getDenominator(def, defMult){
+function getDenominator(def, defMult) {
     let enemyDefTotal = def * defMult
     let denominator = (enemyDefTotal / 300) + 1
 
     return denominator
 }
 
-function getDamageResult(numerator, denominator, criticalDmg, criticalMult, totalMult){
+function getDamageResult(numerator, denominator, criticalDmg, criticalMult, totalMult) {
     const missConst = 0.75
     const nomarlConst = 1
     const hardConst = 1.3
@@ -62,92 +76,92 @@ function getDamageResult(numerator, denominator, criticalDmg, criticalMult, tota
     return msg;
 }
 
-function getAtkMult(){
+function getAtkMult() {
     let atkUp = document.getElementById("atkUp").checked
     let atkGreateUp = document.getElementById("atkGreateUp").checked
     let value = 1.0
 
-    if(atkGreateUp){
-        value = 1.75 
+    if (atkGreateUp) {
+        value = 1.75
     }
-    else if(atkUp){
+    else if (atkUp) {
         value = 1.5
     }
     return value
 }
 
-function getSpeedMult(){
+function getSpeedMult() {
     let speedUp = document.getElementById("speedUp").checked
     let speedGreateUp = document.getElementById("speedGreateUp").checked
     let value = 1.0
 
-    if(speedGreateUp){
-        value = 1.45 
+    if (speedGreateUp) {
+        value = 1.45
     }
-    else if(speedUp){
+    else if (speedUp) {
         value = 1.3
     }
     return value
 }
 
-function getDefMult(){
+function getDefMult() {
     let defUp = document.getElementById("defUp").checked
     let value = 1.0
 
-    if(defUp){
-        value = 1.6 
+    if (defUp) {
+        value = 1.6
     }
     return value
 }
 
-function getcriticalDmgMult(){
+function getcriticalDmgMult() {
     let criticalDmgUp = document.getElementById("criticalDmgUp").checked
     let value = 1.0
 
-    if(criticalDmgUp){
+    if (criticalDmgUp) {
         value = 1.5
     }
     return value
 }
 
-function getTargetMult(){
+function getTargetMult() {
     let target = document.getElementById("target").checked
     let value = 1.0
 
-    if(target){
+    if (target) {
         value = 1.15
     }
     return value
 }
 
-function getSkillMult(skillMultValue){
+function getSkillMult(skillMultValue) {
     return skillMultValue * 0.01 + 1
 }
 
-function getElementMult(heroElement, enemyElement){
+function getElementMult(heroElement, enemyElement) {
     let isAdvantage = heroElement.isAdvantageElement(enemyElement)
     return isAdvantage ? 1.1 : 1
 }
 
-function getEnemyDefMult(){
+function getEnemyDefMult() {
     let defDown = document.getElementById("defDown").checked
     let value = 1.0
 
-    if(defDown){
+    if (defDown) {
         value = 0.3
     }
     return value
 }
 
 function calculateDamage(hero, enemy, useSkillIndex, skillMultValue) {
-    hero.attack *= getAtkMult()
-    hero.speed *= getSpeedMult()
-    hero.def *= getDefMult()    
+    hero.attackMult = getAtkMult()
+    hero.speedMult = getSpeedMult()
+    hero.defMult = getDefMult()
 
     let heroSkill = hero.skillArray[useSkillIndex]
 
     let numerator = getNumerator(heroSkill, hero, heroSkill.attackRate,
-        getSkillMult(skillMultValue), getElementMult(hero.element, enemy.element))        
+        getSkillMult(skillMultValue), getElementMult(hero.element, enemy.element))
     let denominator = getDenominator(enemy.def, getEnemyDefMult())
 
     let msg = `
@@ -156,9 +170,9 @@ function calculateDamage(hero, enemy, useSkillIndex, skillMultValue) {
 
     if (heroSkill.soulBunAttackRate !== 0) {
         let numerator = getNumerator(heroSkill, hero, heroSkill.soulBunAttackRate,
-            getSkillMult(skillMultValue), getElementMult(hero.element, enemy.element))           
+            getSkillMult(skillMultValue), getElementMult(hero.element, enemy.element))
         let denominator = getDenominator(enemy.def, getEnemyDefMult())
-    
+
         msg += '\n    SoulBurn'
         msg += getDamageResult(numerator, denominator, hero.criticalDmg, getcriticalDmgMult(), getTargetMult())
     }
@@ -183,7 +197,7 @@ document.getElementById('simulate').onclick = () => {
 
     let enemyElementValue = document.getElementById("enemy_element").value
     let enemyDefValue = document.getElementById("enemy_def").value
-    
+
     let heroTableData = jsonInstance.getRefinedHeroData(heroList.selectedIndex)
     let heroElement = element.ElementTable[heroTableData.element]
     let enemyElement = element.ElementTable[enemyElementValue]
@@ -223,7 +237,7 @@ document.getElementById('speedUp').onclick = () => {
 
 document.getElementById('speedGreateUp').onclick = () => {
     let isChecked = document.getElementById("speedGreateUp").checked
-    
+
     if (isChecked)
         document.getElementById("speedUp").checked = !isChecked
 }
