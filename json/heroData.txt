@@ -27,33 +27,6 @@
         ]
     },
     {
-        "element": "3",
-        "name": "test",
-        "skillArray": [
-            {
-                "additionRate": 0.01,
-                "attackRate": 1,
-                "attributeIndex": 1,
-                "pow": 1,
-                "soulBunAttackRate": 2
-            },
-            {
-                "additionRate": 0.01,
-                "attackRate": 1,
-                "attributeIndex": 2,
-                "pow": 1,
-                "soulBunAttackRate": 2
-            },
-            {
-                "additionRate": 0.01,
-                "attackRate": 1,
-                "attributeIndex": 3,
-                "pow": 1,
-                "soulBunAttackRate": 2
-            }
-        ]
-    },
-    {
         "element": "0",
         "name": "체르미아",
         "skillArray": [
@@ -81,29 +54,83 @@
         ]
     },
     {
-        "name": "암살자 콜리",
         "element": "4",
+        "name": "암살자 콜리",
         "skillArray": [
             {
-                "attackRate": 0.8,
-                "pow": 1,
                 "additionRate": 0.00075,
-                "soulBunAttackRate": 0,
-                "attributeIndex": 1
+                "attackRate": 0.8,
+                "attributeIndex": 1,
+                "pow": 1,
+                "soulBunAttackRate": 0
             },
             {
-                "attackRate": 0,
-                "pow": 0,
                 "additionRate": 0,
-                "soulBunAttackRate": 0,
-                "attributeIndex": 0
+                "attackRate": 0,
+                "attributeIndex": 0,
+                "pow": 0,
+                "soulBunAttackRate": 0
             },
             {
-                "attackRate": 1.5,
-                "pow": 0.8,
                 "additionRate": 0.0011250000000000001,
-                "soulBunAttackRate": 3,
+                "attackRate": 1.5,
+                "attributeIndex": 1,
+                "pow": 0.8,
+                "soulBunAttackRate": 3
+            }
+        ]
+    },
+    {
+        "name": "테스트1",
+        "element": "3",
+        "skillArray": [
+            {
+                "attackRate": 1,
+                "pow": 1,
+                "additionRate": 0.01,
+                "soulBunAttackRate": 2,
                 "attributeIndex": 1
+            },
+            {
+                "attackRate": 1,
+                "pow": 1,
+                "additionRate": 0.01,
+                "soulBunAttackRate": 2,
+                "attributeIndex": 2
+            },
+            {
+                "attackRate": 1,
+                "pow": 1,
+                "additionRate": 0.01,
+                "soulBunAttackRate": 2,
+                "attributeIndex": 3
+            }
+        ]
+    },
+    {
+        "name": "테스트2",
+        "element": "3",
+        "skillArray": [
+            {
+                "attackRate": 1,
+                "pow": 1,
+                "additionRate": 0.01,
+                "soulBunAttackRate": 2,
+                "attributeIndex": 1
+            },
+            {
+                "attackRate": 1,
+                "pow": 1,
+                "additionRate": 0.01,
+                "soulBunAttackRate": 2,
+                "attributeIndex": 2
+            },
+            {
+                "attackRate": 1,
+                "pow": 1,
+                "additionRate": 0.01,
+                "soulBunAttackRate": 2,
+                "attributeIndex": 3
             }
         ]
     }

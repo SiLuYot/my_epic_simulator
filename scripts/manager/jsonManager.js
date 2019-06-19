@@ -13,7 +13,7 @@ class JsonManager {
             this.dataPath = './json'
             this.heroDataPath = './json/heroData.txt'
 
-            this.addCommand = null
+            this.command = null
             this.heroTable = []
 
             instance = this
@@ -40,15 +40,19 @@ class JsonManager {
             this.readJson(path, callback))
     }
 
-    changeAddCommand(command) {
-        this.addCommand = command
+    changeCommand(command) {
+        this.command = command
     }
 
-    addProcess(newHero) {
-        let command = this.addCommand
+    setCommandParameter(param){
+        if(this.command){
+            this.command.setParameter(param)
+        }
+    }
 
-        if (command !== null) {
-            command.execute(newHero)
+    executeCommand() {
+        if (this.command) {
+            this.command.execute()
         }
     }
 

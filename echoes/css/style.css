@@ -206,6 +206,14 @@ a:visited {
     padding: 0;
     position: relative;
 }
+.nav-hero-list {
+    list-style: none;
+    padding: 0;
+    position: relative;
+    height: 300px;
+    overflow: hidden; 
+    overflow-y: scroll;
+}
 .item-anchor {
     color: #fff;
     font-size: 30px;

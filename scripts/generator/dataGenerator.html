@@ -34,6 +34,26 @@
     </nav>
 
     <div style="position: absolute; width: 300px; top: 100px; padding: 10px">
+        <div id="modeRadio">
+            <label>생성 <input name="mode" type="radio" value="new" , checked></label>
+            <label>수정 <input name="mode" type="radio" value="edit"></label>
+            <label>삭제 <input name="mode" type="radio" value="delete"></label>
+        </div>
+        <!-- style="height:200px; overflow:hidden; overflow-y:scroll;" -->
+        <!-- data-role="listview" data-inset="true"  -->
+        <div id="dataListView">
+            <ul class="nav-hero-list">
+                <li class="nav-item"><a href="#">Test</a></li>
+            </ul>
+        </div>
+
+        <div id="heroListDiv" style="visibility:hidden">
+            <strong>영웅목록</strong>
+            <select id="heroList" style="height: 25px;">
+            </select><br>
+        </div>
+    </div>
+    <div style="position: absolute; width: 300px; top: 100px; left: 350px; padding: 10px">
         <p><strong>이름</strong><br>
             <input type="text" id="name">
         </p>
@@ -81,7 +101,7 @@
     </div>
     <div style="position: fixed; height: 50px; bottom: 0; width: 100%; padding: 10px; pointer-events:none;">
         <div style="float: right;">
-            <input type="button" id="create" value="생성" style="width:200px; pointer-events:auto;">
+            <input type="button" id="execute" value="실행" style="width:200px; pointer-events:auto;">
         </div>
     </div>
 
