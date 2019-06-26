@@ -81,34 +81,61 @@
         ]
     },
     {
-        "name": "테스트1",
         "element": "3",
+        "name": "테스트1",
         "skillArray": [
             {
-                "attackRate": 1,
-                "pow": 1,
                 "additionRate": 0.01,
-                "soulBunAttackRate": 2,
-                "attributeIndex": 1
+                "attackRate": 1,
+                "attributeIndex": 1,
+                "pow": 1,
+                "soulBunAttackRate": 2
             },
             {
-                "attackRate": 1,
-                "pow": 1,
                 "additionRate": 0.01,
-                "soulBunAttackRate": 2,
-                "attributeIndex": 2
+                "attackRate": 1,
+                "attributeIndex": 2,
+                "pow": 1,
+                "soulBunAttackRate": 2
             },
             {
-                "attackRate": 1,
-                "pow": 1,
                 "additionRate": 0.01,
-                "soulBunAttackRate": 2,
-                "attributeIndex": 3
+                "attackRate": 1,
+                "attributeIndex": 3,
+                "pow": 1,
+                "soulBunAttackRate": 2
             }
         ]
     },
     {
+        "element": "3",
         "name": "테스트2",
+        "skillArray": [
+            {
+                "additionRate": 0.01,
+                "attackRate": 1,
+                "attributeIndex": 1,
+                "pow": 1,
+                "soulBunAttackRate": 2
+            },
+            {
+                "additionRate": 0.01,
+                "attackRate": 1,
+                "attributeIndex": 2,
+                "pow": 1,
+                "soulBunAttackRate": 2
+            },
+            {
+                "additionRate": 0.01,
+                "attackRate": 1,
+                "attributeIndex": 3,
+                "pow": 1,
+                "soulBunAttackRate": 2
+            }
+        ]
+    },
+    {
+        "name": "테스트3",
         "element": "3",
         "skillArray": [
             {
